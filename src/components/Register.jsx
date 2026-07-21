@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import { User, Phone, School, Award, Ruler, CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
-
-// Твои рабочие ключи Supabase
-const SUPABASE_URL = 'https://xhsbsvzwiwdrythatmev.supabase.co'; 
-const SUPABASE_ANON_KEY = 'sb_publishable_Z30oZ_ytCvKKxBQiMiNRwzA_iGDC0wg0b93qWRE5Aps';
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+import { User, Phone, School, Award, Ruler, CheckCircle2, AlertCircle, ArrowRight, MapPin } from 'lucide-react';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -17,11 +11,12 @@ export default function Register() {
     student_weight: '',
     school: '',
     grade: '',
+    address: '', // Добавлено поле Адрес
     mother_phone: '',
     father_phone: '',
     father_height: '',
     mother_height: '',
-    student_phone: '' // это поле необязательное
+    student_phone: ''
   });
 
   const [status, setStatus] = useState({
@@ -39,12 +34,36 @@ export default function Register() {
     e.preventDefault();
     setStatus({ loading: true, success: null, error: null });
 
-    try {
-      const { error } = await supabase
-        .from('students')
-        .insert([formData]);
+    // Маппинг данных под Java Entity (Student.java)
+    const payload = {
+      firstName: formData.student_name,
+      lastName: formData.student_surname,
+      height: formData.student_height ? parseFloat(formData.student_height) : null,
+      weight: formData.student_weight ? parseFloat(formData.student_weight) : null,
+      school: formData.school,
+      studentClass: formData.grade,
+      address: formData.address,
+      studentPhone: formData.student_phone,
+      fatherName: formData.father_name,
+      motherName: formData.mother_name,
+      fatherPhone: formData.father_phone,
+      motherPhone: formData.mother_phone,
+      fatherHeight: formData.father_height ? parseFloat(formData.father_height) : null,
+      motherHeight: formData.mother_height ? parseFloat(formData.mother_height) : null
+    };
 
-      if (error) throw error;
+    try {
+      const response = await fetch('http://localhost:8080/api/students/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Server error');
+      }
 
       setStatus({
         loading: false,
@@ -52,7 +71,7 @@ export default function Register() {
         error: null
       });
 
-      // Очистка формы после успеха
+      // Очистка формы
       setFormData({
         student_name: '',
         student_surname: '',
@@ -62,6 +81,7 @@ export default function Register() {
         student_weight: '',
         school: '',
         grade: '',
+        address: '',
         mother_phone: '',
         father_phone: '',
         father_height: '',
@@ -70,7 +90,7 @@ export default function Register() {
       });
 
     } catch (err) {
-      console.error('Database Error:', err);
+      console.error('Backend Error:', err);
       setStatus({
         loading: false,
         success: null,
@@ -83,7 +103,7 @@ export default function Register() {
     page: {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f0f4f8, #d9e2ec)',
-      padding: '24px 12px', // Уменьшенные отступы для мобильных устройств
+      padding: '24px 12px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -96,11 +116,11 @@ export default function Register() {
       boxShadow: '0 10px 25px rgba(0, 0, 0, 0.05)',
       width: '100%',
       maxWidth: '650px',
-      padding: '24px 16px', // Адаптивные внутренние поля (на мобилках будет компактно)
+      padding: '24px 16px',
       boxSizing: 'border-box'
     },
     title: {
-      fontSize: '1.5rem', // Слегка уменьшили для узких экранов
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#102a43',
       textAlign: 'center',
@@ -152,7 +172,7 @@ export default function Register() {
       boxSizing: 'border-box',
       outline: 'none',
       transition: 'border-color 0.2s',
-      WebkitAppearance: 'none' // Убирает дефолтные тени полей в iOS Safari
+      WebkitAppearance: 'none'
     },
     button: {
       width: '100%',
@@ -249,6 +269,16 @@ export default function Register() {
                 <input type="text" name="grade" value={formData.grade} onChange={handleChange} style={styles.input} placeholder="Məs: 7B" required />
               </div>
             </div>
+
+            {/* Новое поле: Адрес */}
+            <div style={{ ...styles.formGroup, gridColumn: '1 / -1' }} className="full-width">
+              <label style={styles.label}>Ünvan (Yaşayış yeri)</label>
+              <div style={styles.inputWrapper}>
+                <MapPin size={18} style={styles.icon} />
+                <input type="text" name="address" value={formData.address} onChange={handleChange} style={styles.input} placeholder="Məs: Xırdalan şəhəri, H. Əliyev pr." required />
+              </div>
+            </div>
+
             <div style={{ ...styles.formGroup, gridColumn: '1 / -1' }} className="full-width">
               <label style={styles.label}>Şagirdin öz telefonu <span style={{color: '#9fb3c8', fontWeight: 'normal'}}>(vacib deyil)</span></label>
               <div style={styles.inputWrapper}>
@@ -313,7 +343,6 @@ export default function Register() {
         </form>
       </div>
 
-      {/* Умные адаптивные стили для разных экранов */}
       <style>{`
         .form-grid {
           display: grid;
@@ -322,7 +351,7 @@ export default function Register() {
         }
         @media (max-width: 580px) {
           .form-grid {
-            grid-template-columns: 1fr; /* Поля встают друг под друга */
+            grid-template-columns: 1fr;
             gap: 12px;
           }
           .full-width {
