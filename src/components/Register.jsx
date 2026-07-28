@@ -11,7 +11,7 @@ export default function Register() {
     student_weight: '',
     school: '',
     grade: '',
-    address: '', // Добавлено поле Адрес
+    address: '',
     mother_phone: '',
     father_phone: '',
     father_height: '',
@@ -53,7 +53,8 @@ export default function Register() {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/api/students/register', {
+      // Обновлено: запрос отправляется на живой бэкенд Render
+      const response = await fetch('https://absheron-ik-back.onrender.com/api/students/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
