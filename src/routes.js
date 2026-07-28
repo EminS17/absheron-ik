@@ -4,7 +4,8 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Team from "./components/Team";
 import Contact from "./components/Contact";
-import Register from "./components/Register"; // 1. Импортируем компонент регистрации
+import Register from "./components/Register";
+import Admin from "./components/Admin"; // 1. Импортируем админку
 import NotFound from "./components/NotFound";
 
 export const router = createBrowserRouter([
@@ -16,7 +17,8 @@ export const router = createBrowserRouter([
       { path: "about", Component: About },
       { path: "team", Component: Team },
       { path: "contact", Component: Contact },
-      { path: "register", Component: Register }, // 2. Добавляем путь для регистрации
+      { path: "register", Component: Register },
+      { path: "admin", Component: Admin }, // 2. Добавляем путь для админ-панели учителя
       { path: "*", Component: NotFound },
     ],
   },
