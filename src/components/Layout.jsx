@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-// 🖼️ Импортируем логотип
-import logo from '../assets/ABŞERON LOQO 2.png'; 
+// 🖼️ Используем логотип logo.png
+import logo from '../assets/logo.png'; 
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Layout() {
       flexDirection: 'column',
       backgroundColor: '#f9fafb',
       fontFamily: 'system-ui, -apple-system, sans-serif',
-      overflowX: 'hidden' // Защита от горизонтальной прокрутки
+      overflowX: 'hidden'
     },
     header: {
       backgroundColor: '#ffffff',
@@ -59,12 +59,24 @@ export default function Layout() {
     logoLink: {
       display: 'flex',
       alignItems: 'center',
+      gap: '12px',
       textDecoration: 'none'
     },
     logoImg: {
-      height: '46px', // Оптимальная высота для мобильных
+      height: '46px',
       width: 'auto',
       objectFit: 'contain'
+    },
+    logoTitle: {
+      fontSize: '1.2rem',
+      fontWeight: 'bold',
+      color: '#3E6DB5',
+      lineHeight: '1.1'
+    },
+    logoSubtitle: {
+      fontSize: '0.75rem',
+      color: '#4b5563',
+      marginTop: '2px'
     },
     desktopNav: {
       display: 'flex',
@@ -75,16 +87,15 @@ export default function Layout() {
       const isReg = linkPath === '/register';
       return {
         textDecoration: 'none',
-        fontSize: '1rem', // Слегка увеличен для читаемости на смартфонах
+        fontSize: '0.95rem',
         fontWeight: '600',
         transition: 'all 0.2s ease',
         color: isReg ? '#ffffff' : (isActive(linkPath) ? '#3E6DB5' : '#374151'),
         backgroundColor: isReg ? '#3E6DB5' : 'transparent',
-        padding: isReg ? '10px 20px' : '10px 12px', // Увеличены touch targets
+        padding: isReg ? '10px 20px' : '8px 12px',
         borderRadius: isReg ? '8px' : '6px',
         border: isReg ? '1px solid #3E6DB5' : 'none',
-        display: 'block', // Чтобы ссылка занимала всю ширину в мобильном меню
-        width: '100%',
+        display: 'block',
         boxSizing: 'border-box'
       };
     },
@@ -98,7 +109,7 @@ export default function Layout() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      WebkitTapHighlightColor: 'transparent' // Убирает синюю вспышку при тапе на iOS
+      WebkitTapHighlightColor: 'transparent'
     },
     mobileNav: {
       marginTop: '12px',
@@ -117,22 +128,23 @@ export default function Layout() {
     footer: {
       backgroundColor: '#3E6DB5',
       color: '#ffffff',
-      padding: '36px 16px 24px 16px'
+      padding: '40px 16px 24px 16px'
     },
     footerContainer: {
       maxWidth: '1152px',
       margin: '0 auto'
     },
     footerLogo: {
-      height: '56px',
+      height: '54px',
       width: 'auto',
       objectFit: 'contain'
     },
     footerTitle: {
       fontWeight: 'bold',
-      marginBottom: '12px',
+      marginBottom: '14px',
       fontSize: '1.05rem',
-      color: '#ffffff'
+      color: '#ffffff',
+      letterSpacing: '0.3px'
     },
     footerLinksFlex: {
       display: 'flex',
@@ -143,8 +155,8 @@ export default function Layout() {
       fontSize: '0.9rem',
       color: '#e5e7eb',
       textDecoration: 'none',
-      padding: '4px 0', // Удобно нажимать с телефона
-      display: 'inline-block'
+      display: 'inline-block',
+      width: 'fit-content'
     },
     footerContactSpace: {
       fontSize: '0.9rem',
@@ -167,15 +179,18 @@ export default function Layout() {
   return (
     <div style={styles.layoutWrapper}>
       <style>{`
-        /* Скрытие/отображение мобильных и десктоп элементов */
+        /* Оптимизация футера и меню под телефон */
         @media (max-width: 991px) {
           .desktop-only { display: none !important; }
           .footer-responsive-grid {
             display: flex;
-            flexDirection: column;
-            gap: 28px;
-            text-align: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 32px;
+            text-align: left; /* Ровное выравнивание по левому краю для мобильных */
+            align-items: flex-start;
+          }
+          .footer-col {
+            width: 100%;
           }
         }
         @media (min-width: 992px) {
@@ -185,9 +200,8 @@ export default function Layout() {
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 32px;
             text-align: left;
-            align-items: center;
+            align-items: start;
           }
-          /* Возвращаем оригинальные отступы для десктопа */
           .desktop-link {
             width: auto !important;
             display: inline-block !important;
@@ -200,9 +214,13 @@ export default function Layout() {
         <nav style={styles.navContainer}>
           <div style={styles.navFlex}>
             
-            {/* Logo */}
+            {/* Logo + Название */}
             <Link to="/" style={styles.logoLink}>
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logoImg} />
+              <div>
+                <div style={styles.logoTitle}>ABŞERONİK</div>
+                <div style={styles.logoSubtitle}>Abşeron İdman Klubu</div>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -263,13 +281,13 @@ export default function Layout() {
         <div style={styles.footerContainer}>
           <div className="footer-responsive-grid">
             
-            <div>
+            <div className="footer-col">
               <Link to="/">
                 <img src={logo} alt="ABŞERONİK Logo" style={styles.footerLogo} />
               </Link>
             </div>
             
-            <div>
+            <div className="footer-col">
               <h3 style={styles.footerTitle}>Naviqasiya</h3>
               <div style={styles.footerLinksFlex}>
                 {navLinks.map((link) => (
@@ -284,7 +302,7 @@ export default function Layout() {
               </div>
             </div>
 
-            <div>
+            <div className="footer-col">
               <h3 style={styles.footerTitle}>Əlaqə</h3>
               <div style={styles.footerContactSpace}>
                 <p style={styles.footerContactP}>Email: absheronik@gmail.com</p>
