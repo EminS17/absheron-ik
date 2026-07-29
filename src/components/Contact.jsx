@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 // Встроенная SVG-иконка WhatsApp
-const WhatsappIcon = ({ size = 28 }) => (
+const WhatsappIcon = ({ size = 26 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -21,7 +21,7 @@ const WhatsappIcon = ({ size = 28 }) => (
 );
 
 // Встроенная SVG-иконка Instagram
-const InstagramIcon = ({ size = 28 }) => (
+const InstagramIcon = ({ size = 26 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -96,53 +96,54 @@ export default function Contact() {
     hero: {
       background: 'linear-gradient(135deg, #3E6DB5, #2C5294)',
       color: '#ffffff',
-      padding: '80px 16px',
+      padding: '48px 16px',
       textAlign: 'center'
     },
-    heroTitle: { fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '24px' },
-    heroText: { fontSize: '1.25rem', color: '#f3f4f6' },
-    sectionWhite: { padding: '64px 16px', backgroundColor: '#ffffff' },
-    sectionGray: { padding: '64px 16px', backgroundColor: '#f9fafb' },
+    heroTitle: { fontSize: '2.2rem', fontWeight: 'bold', marginBottom: '16px' },
+    heroText: { fontSize: '1.1rem', color: '#f3f4f6' },
+    sectionWhite: { padding: '48px 16px', backgroundColor: '#ffffff' },
+    sectionGray: { padding: '48px 16px', backgroundColor: '#f9fafb' },
     container: { maxWidth: '1152px', margin: '0 auto' },
     grid4: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-      gap: '24px'
+      gap: '16px'
     },
     card: {
       backgroundColor: '#f9fafb',
       borderRadius: '12px',
-      padding: '24px',
+      padding: '20px',
       textAlign: 'center',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+      boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+      border: '1px solid #e2e8f0'
     },
     iconWrapper: {
       backgroundColor: '#3E6DB5',
-      width: '64px',
-      height: '64px',
+      width: '56px',
+      height: '56px',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      margin: '0 auto 16px auto'
+      margin: '0 auto 12px auto'
     },
-    cardTitle: { fontWeight: 'bold', marginBottom: '8px', color: '#1f2937' },
-    cardLink: { fontSize: '0.875rem', color: '#4b5563', textDecoration: 'none', display: 'block' },
+    cardTitle: { fontWeight: 'bold', marginBottom: '8px', color: '#1f2937', fontSize: '1.1rem' },
+    cardLink: { fontSize: '0.9rem', color: '#4b5563', textDecoration: 'none', display: 'block' },
     formWrapper: { maxWidth: '768px', margin: '0 auto' },
-    formTitle: { fontSize: '2rem', fontWeight: 'bold', marginBottom: '16px', textAlign: 'center', color: '#1f2937' },
-    formSubtitle: { color: '#4b5563', marginBottom: '48px', textAlign: 'center' },
-    form: { backgroundColor: '#ffffff', borderRadius: '12px', padding: '32px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' },
-    grid2: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '24px' },
-    label: { display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '8px' },
-    input: { width: '100%', padding: '12px 16px', border: '1px solid #d1d5db', borderRadius: '8px', boxSizing: 'border-box' },
-    formGroup: { marginBottom: '24px' },
+    formTitle: { fontSize: '1.8rem', fontWeight: 'bold', marginBottom: '12px', textAlign: 'center', color: '#1f2937' },
+    formSubtitle: { color: '#4b5563', marginBottom: '32px', textAlign: 'center', fontSize: '0.95rem' },
+    form: { backgroundColor: '#ffffff', borderRadius: '12px', padding: '20px', boxShadow: '0 4px 10px rgba(0,0,0,0.04)', border: '1px solid #e2e8f0' },
+    grid2: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '16px' },
+    label: { display: 'block', fontSize: '0.85rem', fontWeight: '500', color: '#374151', marginBottom: '6px' },
+    input: { width: '100%', padding: '12px', border: '1px solid #d1d5db', borderRadius: '8px', boxSizing: 'border-box', fontSize: '1rem' },
+    formGroup: { marginBottom: '16px' },
     button: {
       width: '100%',
       backgroundColor: '#3E6DB5',
       color: '#ffffff',
-      padding: '16px',
+      padding: '14px',
       borderRadius: '8px',
-      fontWeight: '500',
+      fontWeight: '600',
       border: 'none',
       cursor: status.loading ? 'not-allowed' : 'pointer',
       display: 'flex',
@@ -152,20 +153,21 @@ export default function Contact() {
       fontSize: '1rem',
       opacity: status.loading ? 0.7 : 1
     },
-    socialContainer: { display: 'flex', justifyContent: 'center', gap: '24px' },
+    socialContainer: { display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' },
     socialCircle: {
       backgroundColor: '#3E6DB5',
       color: '#ffffff',
-      width: '64px',
-      height: '64px',
+      width: '56px',
+      height: '56px',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
     },
     mapWrapper: {
-      height: '450px',
+      height: '350px',
       width: '100%',
       borderRadius: '12px',
       overflow: 'hidden',
@@ -180,9 +182,10 @@ export default function Contact() {
     statusMessage: {
       padding: '12px',
       borderRadius: '8px',
-      marginBottom: '24px',
+      marginBottom: '16px',
       textAlign: 'center',
-      fontWeight: '500'
+      fontWeight: '500',
+      fontSize: '0.9rem'
     }
   };
 
@@ -204,7 +207,7 @@ export default function Contact() {
             {/* Email */}
             <div style={styles.card}>
               <div style={styles.iconWrapper}>
-                <Mail color="#ffffff" size={28} />
+                <Mail color="#ffffff" size={26} />
               </div>
               <h3 style={styles.cardTitle}>Email</h3>
               <a href="mailto:absheronik@gmail.com" style={styles.cardLink}>
@@ -215,7 +218,7 @@ export default function Contact() {
             {/* Telefon (С двумя номерами) */}
             <div style={styles.card}>
               <div style={styles.iconWrapper}>
-                <Phone color="#ffffff" size={28} />
+                <Phone color="#ffffff" size={26} />
               </div>
               <h3 style={styles.cardTitle}>Telefon</h3>
               <a href="tel:+994517425151" style={{ ...styles.cardLink, marginBottom: '4px' }}>
@@ -229,7 +232,7 @@ export default function Contact() {
             {/* Ünvan */}
             <div style={styles.card}>
               <div style={styles.iconWrapper}>
-                <MapPin color="#ffffff" size={28} />
+                <MapPin color="#ffffff" size={26} />
               </div>
               <h3 style={styles.cardTitle}>Ünvan</h3>
               <a 
@@ -245,7 +248,7 @@ export default function Contact() {
             {/* İş saatları */}
             <div style={styles.card}>
               <div style={styles.iconWrapper}>
-                <Clock color="#ffffff" size={28} />
+                <Clock color="#ffffff" size={26} />
               </div>
               <h3 style={styles.cardTitle}>İş saatları</h3>
               <p style={{ ...styles.cardLink, margin: 0 }}>B.e.-C.: 08:00 – 17:00</p>
@@ -344,7 +347,7 @@ export default function Contact() {
               <div style={styles.formGroup}>
                 <label style={styles.label}>Mesaj</label>
                 <textarea 
-                  rows={6} 
+                  rows={5} 
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -355,7 +358,7 @@ export default function Contact() {
               </div>
               
               <button type="submit" style={styles.button} disabled={status.loading}>
-                <Send size={20} />
+                <Send size={18} />
                 {status.loading ? 'Göndərilir...' : 'Mesajı göndər'}
               </button>
             </form>
@@ -366,11 +369,11 @@ export default function Contact() {
       {/* Social Media */}
       <section style={styles.sectionWhite}>
         <div style={{ ...styles.container, textAlign: 'center' }}>
-          <h2 style={{ ...styles.formTitle, marginBottom: '24px' }}>Sosial şəbəkələrdə bizi izləyin</h2>
-          <p style={{ ...styles.formSubtitle, marginBottom: '32px' }}>Klubun bütün xəbərləri, nəticələri və hadisələrindən xəbərdar olun</p>
+          <h2 style={{ ...styles.formTitle, marginBottom: '16px' }}>Sosial şəbəkələrdə bizi izləyin</h2>
+          <p style={{ ...styles.formSubtitle, marginBottom: '24px' }}>Klubun bütün xəbərləri, nəticələri və hadisələrindən xəbərdar olun</p>
           <div style={styles.socialContainer}>
             
-            {/* WhatsApp (Заменили Facebook) */}
+            {/* WhatsApp */}
             <a 
               href="https://wa.me/994517425151" 
               target="_blank" 
@@ -378,7 +381,7 @@ export default function Contact() {
               style={styles.socialCircle}
               title="WhatsApp"
             >
-              <WhatsappIcon size={28} />
+              <WhatsappIcon size={26} />
             </a>
             
             {/* Instagram */}
@@ -389,12 +392,12 @@ export default function Contact() {
               style={styles.socialCircle}
               title="Instagram"
             >
-              <InstagramIcon size={28} />
+              <InstagramIcon size={26} />
             </a>
             
             {/* Telegram / Send */}
             <a href="#" style={styles.socialCircle} title="Telegram">
-              <Send size={28} />
+              <Send size={26} />
             </a>
           </div>
         </div>
@@ -403,7 +406,7 @@ export default function Contact() {
       {/* Map Section */}
       <section style={styles.sectionGray}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.formTitle, marginBottom: '48px' }}>Bizi necə tapmaq olar</h2>
+          <h2 style={{ ...styles.formTitle, marginBottom: '32px' }}>Bizi necə tapmaq olar</h2>
           <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
               <div style={styles.mapWrapper}>
