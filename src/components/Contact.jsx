@@ -39,10 +39,10 @@ const InstagramIcon = ({ size = 28 }) => (
 );
 
 export default function Contact() {
-  // Прямая ссылка на Zirvə Liseyi в Google Maps
-  const googleMapsUrl = "https://maps.google.com/?q=Zirv%C9%99+Liseyi+Xirdalan";
+  // Обновленная прямая ссылка на координаты из скриншота
+  const googleMapsUrl = "https://www.google.com/maps?q=40.457520,49.720314";
 
-  // Состояния для полей формы (названия ключей должны совпадать с тегами {{variable}} в EmailJS)
+  // Состояния для полей формы
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -73,10 +73,9 @@ export default function Contact() {
     e.preventDefault();
     setStatus({ loading: true, success: null, error: null });
 
-    // Встроенные ключи из вашего запроса
     const SERVICE_ID = 'service_8pv0pla'; 
-    const TEMPLATE_ID = 'template_fun69e5'; // Использован предоставленный первый ключ
-    const PUBLIC_KEY = 'Zy9yFKgBZ1l85qFKX';   // Использован предоставленный второй ключ
+    const TEMPLATE_ID = 'template_fun69e5'; 
+    const PUBLIC_KEY = 'Zy9yFKgBZ1l85qFKX';  
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY)
       .then(() => {
@@ -85,7 +84,6 @@ export default function Contact() {
           success: 'Mesajınız uğurla göndərildi!',
           error: null
         });
-        // Полная очистка полей формы после успешной отправки
         setFormData({ name: '', surname: '', email: '', phone: '', subject: '', message: '' });
       })
       .catch((err) => {
@@ -114,7 +112,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: 'Ünvan',
-      content: 'AAAF Park, 167 Heydar Aliyev ave, Xırdalan 0100 (Zirvə Liseyi)',
+      content: 'Xırdalan şəhəri, AAAF Park yaxınlığı', // Обновленный текст адреса
       link: googleMapsUrl,
     },
     {
@@ -395,9 +393,10 @@ export default function Contact() {
           <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
               <div style={styles.mapWrapper}>
+                {/* Обновленный iframe с нужными координатами */}
                 <iframe
-                  title="Zirvə Liseyi Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.721528620863!2d49.7562624!3d40.4357223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030803da0492ab3%3A0x6b8014022839b8bc!2zWlyZXZlIExpc2V5aQ!5e0!3m2!1sru!2saz!4v1718100000000!5m2!1sru!2saz"
+                  title="Xırdalan Location"
+                  src="https://maps.google.com/maps?q=40.457520,49.720314&hl=az&z=16&output=embed"
                   style={{ ...styles.iframe, pointerEvents: 'none' }}
                   allowFullScreen=""
                   loading="lazy"
