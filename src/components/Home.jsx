@@ -8,38 +8,38 @@ export default function Home() {
     {
       icon: Trophy,
       title: 'Peşəkarlıq',
-      description: 'Yüksək oyun səviyyəsi və milli turnirlərdə nailiyyətlər',
+      description: 'Basketbol və futbol üzrə yüksək oyun səviyyəsi və milli turnirlərdə nailiyyətlər',
     },
     {
       icon: Users,
       title: 'Komanda',
-      description: 'Təcrübəli oyunçular və məşqçi heyəti',
+      description: 'Təcrübəli idmançılar, futbolçular, basketbolçular və peşəkar məşqçi heyəti',
     },
     {
       icon: Calendar,
       title: 'Müntəzəm oyunlar',
-      description: 'Çempionatlarda və turnirlərdə davamlı iştirak',
+      description: 'Çempionatlarda, liqalarda və turnirlərdə davamlı iştirak',
     },
   ];
 
   const news = [
     {
       id: 1,
-      title: 'Ev oyununda qələbə',
+      title: 'Basketbol ev oyununda qələbə',
       date: '15 fevral 2026',
-      description: 'ABŞERONİK 87:72 hesabı ilə əmin qələbə qazandı',
+      description: 'ABŞERONİK basketbol komandası 87:72 hesabı ilə əmin qələbə qazandı',
     },
     {
       id: 2,
-      title: 'Komandaya yeni oyunçu',
+      title: 'Futbol komandamıza yeni oyunçu',
       date: '10 fevral 2026',
-      description: 'Klubumuza təcrübəli pleymeyker qoşuldu',
+      description: 'Klubumuzun futbol heyətinə hücumameyilli təcrübəli hücumçu qoşuldu',
     },
     {
       id: 3,
-      title: 'Qarşıdakı səfər oyunu',
+      title: 'Qarşıdakı səfər oyunları',
       date: '8 fevral 2026',
-      description: 'Komanda mühüm səfər oyununa hazırlaşır',
+      description: 'Komandalarımız mühüm səfər turnirlərinə fəal hazırlaşır',
     },
   ];
 
@@ -160,17 +160,17 @@ export default function Home() {
         <div style={styles.container}>
           <div className="hero-grid-responsive">
             
-            {/* Блок с логотипом (order: 1 на мобильных) */}
+            {/* Блок с логотипом (первый на мобильных) */}
             <div className="hero-logo-box">
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
             </div>
 
-            {/* Текстовый блок (order: 2 на мобильных) */}
+            {/* Текстовый блок */}
             <div className="hero-text-box">
               <h1 style={styles.heroTitle}>ABŞERONİK</h1>
               <p style={styles.heroSubtitle}>Abşeron İdman Klubu</p>
               <p style={styles.heroText}>
-                Azərbaycanın peşəkar basketbol klubu. Qələbəyə doğru addımlamaq, 
+                Azərbaycanın peşəkar basketbol və futbol klubu. Qələbəyə doğru addımlamaq, 
                 komanda ruhu və unudulmaz oyun nümayiş etdirmək bizim əsas hədəfimizdir.
               </p>
               <div style={styles.btnContainer} className="hero-btn-container">
@@ -225,7 +225,7 @@ export default function Home() {
         <div style={styles.container}>
           <h2 style={{ ...styles.sectionTitle, color: '#ffffff', marginBottom: '24px' }}>Oyunlarımızı izləyin</h2>
           <p style={styles.ctaText}>
-            Ev oyunlarında komandamızı arenadan dəstəkləyin və maraqlı səfər qarşıdurmalarını canlı izləyin.
+            Basketbol və futbol matçlarımızda komandamızı arenadan dəstəkləyin və maraqlı səfər qarşıdurmalarını canlı izləyin.
           </p>
           <Link to="/contact" style={{ ...styles.btnWhite, display: 'inline-block', flex: 'none' }}>
             Bizimlə əlaqə
