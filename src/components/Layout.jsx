@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import logo from '/src/assets/logo.png'; 
+
+// 🖼️ Импортируем ваш новый логотип из папки assets
+import logo from '../assets/ABŞERON LOQO 2.png'; 
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,7 +62,7 @@ export default function Layout() {
       textDecoration: 'none'
     },
     logoImg: {
-      height: '46px',
+      height: '50px',
       width: 'auto',
       objectFit: 'contain'
     },
@@ -167,7 +169,6 @@ export default function Layout() {
 
   return (
     <div style={styles.layoutWrapper}>
-      {/* Адаптивные стили */}
       <style>{`
         @media (max-width: 991px) {
           .desktop-only { display: none !important; }
@@ -256,19 +257,17 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      {/* Footer (С вернувшимся красивым логотипом) */}
+      {/* Footer */}
       <footer style={styles.footer}>
         <div style={styles.footerContainer}>
           <div className="footer-responsive-grid">
             
-            {/* Блок только с логотипом */}
             <div>
               <Link to="/">
                 <img src={logo} alt="ABŞERONİK Logo" style={styles.footerLogo} />
               </Link>
             </div>
             
-            {/* Навигация */}
             <div>
               <h3 style={styles.footerTitle}>Naviqasiya</h3>
               <div style={styles.footerLinksFlex}>
@@ -284,7 +283,6 @@ export default function Layout() {
               </div>
             </div>
 
-            {/* Контакты */}
             <div>
               <h3 style={styles.footerTitle}>Əlaqə</h3>
               <div style={styles.footerContactSpace}>
