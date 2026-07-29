@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
@@ -6,6 +6,11 @@ import logo from '/src/assets/logo.png';
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  // 🚀 АВТОМАТИЧЕСКИЙ СКРОЛЛ НАВЕРХ ПРИ СМЕНЕ СТРАНИЦЫ
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const navLinks = [
     { path: '/', label: 'Ana Səhifə' },
@@ -130,7 +135,6 @@ export default function Layout() {
       height: '64px',
       width: 'auto',
       marginBottom: '16px'
-      // Фильтр яркости удалён, чтобы логотип оставался цветным
     },
     footerText: {
       fontSize: '0.875rem',
@@ -242,7 +246,7 @@ export default function Layout() {
           <div style={styles.footerGrid}>
             <div>
               <img src={logo} alt="ABŞERONİK" style={styles.footerLogo} />
-              <p style={styles.footerText}>Peşəkar basketbol klubu</p>
+              <p style={styles.footerText}>Peşəkar basketbol və futbol klubu</p>
             </div>
             
             <div>
@@ -264,8 +268,9 @@ export default function Layout() {
               <h3 style={styles.footerTitle}>Əlaqə</h3>
               <div style={styles.footerContactSpace}>
                 <p style={styles.footerContactP}>Email: absheronik@gmail.com</p>
-                <p style={styles.footerContactP}>Telefon: +994 12 XXX XX XX</p>
-                <p style={{ ...styles.footerContactP, marginBottom: 0 }}>Ünvan: Bakı, Azərbaycan</p>
+                <p style={styles.footerContactP}>Tel: +994 51 742 51 51</p>
+                <p style={styles.footerContactP}>Tel: +994 55 929 18 07</p>
+                <p style={{ ...styles.footerContactP, marginBottom: 0 }}>Ünvan: Xırdalan, AAAF Park yaxınlığı</p>
               </div>
             </div>
           </div>
@@ -276,7 +281,7 @@ export default function Layout() {
         </div>
       </footer>
 
-      {/* Адаптивные стили для скрытия */}
+      {/* CSS для скрытия мобильного меню на ПК */}
       <style>{`
         @media (max-width: 991px) {
           .desktop-only { display: none !important; }
