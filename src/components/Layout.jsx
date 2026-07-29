@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-// 🖼️ Импортируем ваш новый логотип из папки assets
+// 🖼️ Импортируем логотип
 import logo from '../assets/ABŞERON LOQO 2.png'; 
 
 export default function Layout() {
@@ -129,11 +129,45 @@ export default function Layout() {
       maxWidth: '1152px',
       margin: '0 auto'
     },
-    footerLogo: {
-      height: '64px',
-      width: 'auto',
-      objectFit: 'contain'
+
+    /* --- НОВЫЕ СТИЛИ ДЛЯ ЛОГОТИПА В ФУТЕРЕ --- */
+    footerBrand: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '12px',
+      maxWidth: '280px'
     },
+    footerLogoHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      textDecoration: 'none'
+    },
+    footerLogo: {
+      height: '56px',
+      width: 'auto',
+      objectFit: 'contain',
+      filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15))' // Легкая тень для объема
+    },
+    footerLogoTitle: {
+      fontSize: '1.25rem',
+      fontWeight: 'bold',
+      color: '#ffffff',
+      letterSpacing: '0.5px',
+      lineHeight: '1.2'
+    },
+    footerLogoSubtitle: {
+      fontSize: '0.75rem',
+      color: '#d1d5db'
+    },
+    footerDesc: {
+      fontSize: '0.85rem',
+      color: '#e5e7eb',
+      lineHeight: '1.5',
+      margin: 0
+    },
+    /* ----------------------------------------- */
+
     footerTitle: {
       fontWeight: 'bold',
       marginBottom: '12px',
@@ -148,7 +182,8 @@ export default function Layout() {
     footerLink: {
       fontSize: '0.875rem',
       color: '#e5e7eb',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      transition: 'opacity 0.2s'
     },
     footerContactSpace: {
       fontSize: '0.875rem',
@@ -174,20 +209,28 @@ export default function Layout() {
           .desktop-only { display: none !important; }
           .footer-responsive-grid {
             display: flex;
-            flex-direction: column;
+            flexDirection: column;
             gap: 28px;
             text-align: center;
             align-items: center;
+          }
+          .footer-brand-responsive {
+            align-items: center !important;
+            text-align: center !important;
           }
         }
         @media (min-width: 992px) {
           .mobile-only { display: none !important; }
           .footer-responsive-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: 1.2fr 1fr 1fr;
             gap: 32px;
             text-align: left;
-            align-items: center;
+            align-items: start;
+          }
+          .footer-brand-responsive {
+            align-items: flex-start !important;
+            text-align: left !important;
           }
         }
       `}</style>
@@ -262,10 +305,18 @@ export default function Layout() {
         <div style={styles.footerContainer}>
           <div className="footer-responsive-grid">
             
-            <div>
-              <Link to="/">
+            {/* Обновленный брендинг-блок в футере */}
+            <div style={styles.footerBrand} className="footer-brand-responsive">
+              <Link to="/" style={styles.footerLogoHeader}>
                 <img src={logo} alt="ABŞERONİK Logo" style={styles.footerLogo} />
+                <div>
+                  <div style={styles.footerLogoTitle}>ABŞERONİK</div>
+                  <div style={styles.footerLogoSubtitle}>Abşeron İdman Klubu</div>
+                </div>
               </Link>
+              <p style={styles.footerDesc}>
+                Gənclərin idmana həvəsləndirilməsi və peşəkar idmançıların yetişdirilməsi mərkəzi.
+              </p>
             </div>
             
             <div>
