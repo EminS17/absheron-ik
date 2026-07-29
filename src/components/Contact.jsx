@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 // Встроенная SVG-иконка WhatsApp
@@ -104,9 +104,9 @@ export default function Contact() {
     sectionWhite: { padding: '48px 16px', backgroundColor: '#ffffff' },
     sectionGray: { padding: '48px 16px', backgroundColor: '#f9fafb' },
     container: { maxWidth: '1152px', margin: '0 auto' },
-    grid4: {
+    grid3: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
       gap: '16px'
     },
     card: {
@@ -199,10 +199,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Info */}
+      {/* Contact Info (3 карточки) */}
       <section style={styles.sectionWhite}>
         <div style={styles.container}>
-          <div style={styles.grid4}>
+          <div style={styles.grid3}>
             
             {/* Email */}
             <div style={styles.card}>
@@ -215,7 +215,7 @@ export default function Contact() {
               </a>
             </div>
 
-            {/* Telefon (С двумя номерами) */}
+            {/* Telefon */}
             <div style={styles.card}>
               <div style={styles.iconWrapper}>
                 <Phone color="#ffffff" size={26} />
@@ -243,15 +243,6 @@ export default function Contact() {
               >
                 Xırdalan şəhəri, AAAF Park yaxınlığı
               </a>
-            </div>
-
-            {/* İş saatları */}
-            <div style={styles.card}>
-              <div style={styles.iconWrapper}>
-                <Clock color="#ffffff" size={26} />
-              </div>
-              <h3 style={styles.cardTitle}>İş saatları</h3>
-              <p style={{ ...styles.cardLink, margin: 0 }}>B.e.-C.: 08:00 – 17:00</p>
             </div>
 
           </div>
