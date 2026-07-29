@@ -119,20 +119,35 @@ export default function Home() {
 
   return (
     <div>
-      {/* Стили для адаптивного отображения логотипа сверху на мобильных */}
+      {/* Принудительное управление порядком отображения */}
       <style>{`
-        .hero-flex-container {
+        .hero-grid-responsive {
           display: flex;
-          flex-direction: column-reverse;
-          gap: 32px;
+          flex-direction: column;
           align-items: center;
           text-align: center;
+          gap: 32px;
         }
+        .hero-logo-box {
+          order: 1 !important;
+          width: 100%;
+        }
+        .hero-text-box {
+          order: 2 !important;
+          width: 100%;
+        }
+
         @media (min-width: 768px) {
-          .hero-flex-container {
-            flex-direction: row;
+          .hero-grid-responsive {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             text-align: left;
-            justify-content: space-between;
+          }
+          .hero-text-box {
+            order: 1 !important;
+          }
+          .hero-logo-box {
+            order: 2 !important;
           }
           .hero-btn-container {
             justify-content: flex-start !important;
@@ -143,9 +158,15 @@ export default function Home() {
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.container}>
-          <div className="hero-flex-container">
-            {/* Текстовый блок */}
-            <div style={{ flex: 1 }}>
+          <div className="hero-grid-responsive">
+            
+            {/* Блок с логотипом (order: 1 на мобильных) */}
+            <div className="hero-logo-box">
+              <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
+            </div>
+
+            {/* Текстовый блок (order: 2 на мобильных) */}
+            <div className="hero-text-box">
               <h1 style={styles.heroTitle}>ABŞERONİK</h1>
               <p style={styles.heroSubtitle}>Abşeron İdman Klubu</p>
               <p style={styles.heroText}>
@@ -158,10 +179,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Логотип (На мобильном покажется ПЕРВЫМ) */}
-            <div style={{ flex: 1, width: '100%' }}>
-              <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
-            </div>
           </div>
         </div>
       </section>
