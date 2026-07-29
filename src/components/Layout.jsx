@@ -245,8 +245,7 @@ export default function Layout() {
         <div style={styles.footerContainer}>
           <div style={styles.footerGrid}>
             <div>
-              <img src={logo} alt="ABŞERONİK" style={styles.footerLogo} />
-              <p style={styles.footerText}>Peşəkar basketbol və futbol klubu</p>
+              
             </div>
             
             <div>
