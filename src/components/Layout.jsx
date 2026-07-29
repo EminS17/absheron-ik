@@ -127,6 +127,11 @@ export default function Layout() {
       maxWidth: '1152px',
       margin: '0 auto'
     },
+    footerLogo: {
+      height: '64px',
+      width: 'auto',
+      objectFit: 'contain'
+    },
     footerTitle: {
       fontWeight: 'bold',
       marginBottom: '12px',
@@ -181,11 +186,12 @@ export default function Layout() {
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 32px;
             text-align: left;
+            align-items: center;
           }
         }
       `}</style>
 
-      {/* Header (С вернувшимся текстом) */}
+      {/* Header */}
       <header style={styles.header}>
         <nav style={styles.navContainer}>
           <div style={styles.navFlex}>
@@ -250,11 +256,19 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      {/* Footer (Без логотипа и его текста) */}
+      {/* Footer (С вернувшимся красивым логотипом) */}
       <footer style={styles.footer}>
         <div style={styles.footerContainer}>
           <div className="footer-responsive-grid">
             
+            {/* Блок только с логотипом */}
+            <div>
+              <Link to="/">
+                <img src={logo} alt="ABŞERONİK Logo" style={styles.footerLogo} />
+              </Link>
+            </div>
+            
+            {/* Навигация */}
             <div>
               <h3 style={styles.footerTitle}>Naviqasiya</h3>
               <div style={styles.footerLinksFlex}>
@@ -270,6 +284,7 @@ export default function Layout() {
               </div>
             </div>
 
+            {/* Контакты */}
             <div>
               <h3 style={styles.footerTitle}>Əlaqə</h3>
               <div style={styles.footerContactSpace}>
