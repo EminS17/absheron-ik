@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Trophy, Users, Calendar } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
-// (проверь правильность пути в зависимости от того, где лежит файл)
 
 export default function Home() {
   const features = [
@@ -44,69 +43,64 @@ export default function Home() {
     },
   ];
 
-  // JavaScript встроенные стили
   const styles = {
     hero: {
       background: 'linear-gradient(135deg, #3E6DB5, #2C5294)',
       color: '#ffffff',
-      padding: '96px 16px'
+      padding: '48px 16px',
     },
     container: { maxWidth: '1152px', margin: '0 auto' },
-    heroGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-      gap: '48px',
-      alignItems: 'center'
-    },
-    heroTitle: { fontSize: '3.5rem', fontWeight: 'bold', marginBottom: '24px', letterSpacing: '1px' },
-    heroSubtitle: { fontSize: '1.5rem', marginBottom: '16px', color: '#f3f4f6', fontWeight: '500' },
-    heroText: { fontSize: '1.125rem', marginBottom: '32px', color: '#e5e7eb', lineHeight: '1.6' },
-    btnContainer: { display: 'flex', gap: '16px', flexWrap: 'wrap' },
+    heroTitle: { fontSize: '2.8rem', fontWeight: 'bold', marginBottom: '16px', letterSpacing: '1px' },
+    heroSubtitle: { fontSize: '1.3rem', marginBottom: '16px', color: '#f3f4f6', fontWeight: '500' },
+    heroText: { fontSize: '1.05rem', marginBottom: '32px', color: '#e5e7eb', lineHeight: '1.6' },
+    btnContainer: { display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' },
     btnWhite: {
       backgroundColor: '#ffffff',
       color: '#3E6DB5',
       padding: '12px 32px',
       borderRadius: '8px',
-      fontWeight: '500',
+      fontWeight: '600',
       textDecoration: 'none',
-      textAlign: 'center'
+      textAlign: 'center',
+      flex: '1 1 140px'
     },
     btnOutline: {
       border: '2px solid #ffffff',
       color: '#ffffff',
       padding: '10px 32px',
       borderRadius: '8px',
-      fontWeight: '500',
+      fontWeight: '600',
       textDecoration: 'none',
-      textAlign: 'center'
+      textAlign: 'center',
+      flex: '1 1 140px'
     },
-    logo: { width: '100%', maxWidth: '320px', display: 'block', margin: '0 auto', objectFit: 'contain' },
-    sectionWhite: { padding: '80px 16px', backgroundColor: '#ffffff' },
-    sectionGray: { padding: '80px 16px', backgroundColor: '#f9fafb' },
-    sectionBlue: { padding: '80px 16px', backgroundColor: '#3E6DB5', color: '#ffffff', textAlign: 'center' },
-    sectionTitle: { fontSize: '2.25rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '48px', color: '#1f2937' },
+    logo: { width: '100%', maxWidth: '260px', display: 'block', margin: '0 auto', objectFit: 'contain' },
+    sectionWhite: { padding: '60px 16px', backgroundColor: '#ffffff' },
+    sectionGray: { padding: '60px 16px', backgroundColor: '#f9fafb' },
+    sectionBlue: { padding: '60px 16px', backgroundColor: '#3E6DB5', color: '#ffffff', textAlign: 'center' },
+    sectionTitle: { fontSize: '2rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '40px', color: '#1f2937' },
     grid3: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '32px'
+      gap: '24px'
     },
     featureCard: {
       backgroundColor: '#f9fafb',
-      padding: '32px',
+      padding: '24px',
       borderRadius: '12px',
       boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
     },
     iconWrapper: {
       backgroundColor: '#3E6DB5',
-      width: '64px',
-      height: '64px',
+      width: '56px',
+      height: '56px',
       borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: '24px'
+      marginBottom: '20px'
     },
-    cardTitle: { fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '12px', color: '#1f2937' },
+    cardTitle: { fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '10px', color: '#1f2937' },
     cardText: { color: '#4b5563', lineHeight: '1.5', margin: 0 },
     newsCard: {
       backgroundColor: '#ffffff',
@@ -115,33 +109,57 @@ export default function Home() {
       boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
     },
     newsImage: {
-      height: '192px',
+      height: '160px',
       background: 'linear-gradient(135deg, #3E6DB5, #2C5294)'
     },
-    newsContent: { padding: '24px' },
-    newsDate: { fontSize: '0.875rem', color: '#9ca3af', marginBottom: '8px' },
-    ctaText: { fontSize: '1.25rem', marginBottom: '32px', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' }
+    newsContent: { padding: '20px' },
+    newsDate: { fontSize: '0.85rem', color: '#9ca3af', marginBottom: '8px' },
+    ctaText: { fontSize: '1.1rem', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' }
   };
 
   return (
     <div>
+      {/* Стили для адаптивного отображения логотипа сверху на мобильных */}
+      <style>{`
+        .hero-flex-container {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 32px;
+          align-items: center;
+          text-align: center;
+        }
+        @media (min-width: 768px) {
+          .hero-flex-container {
+            flex-direction: row;
+            text-align: left;
+            justify-content: space-between;
+          }
+          .hero-btn-container {
+            justify-content: flex-start !important;
+          }
+        }
+      `}</style>
+
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.container}>
-          <div style={styles.heroGrid}>
-            <div>
+          <div className="hero-flex-container">
+            {/* Текстовый блок */}
+            <div style={{ flex: 1 }}>
               <h1 style={styles.heroTitle}>ABŞERONİK</h1>
               <p style={styles.heroSubtitle}>Abşeron İdman Klubu</p>
               <p style={styles.heroText}>
                 Azərbaycanın peşəkar basketbol klubu. Qələbəyə doğru addımlamaq, 
                 komanda ruhu və unudulmaz oyun nümayiş etdirmək bizim əsas hədəfimizdir.
               </p>
-              <div style={styles.btnContainer}>
+              <div style={styles.btnContainer} className="hero-btn-container">
                 <Link to="/about" style={styles.btnWhite}>Klub haqqında</Link>
                 <Link to="/team" style={styles.btnOutline}>Komanda</Link>
               </div>
             </div>
-            <div>
+
+            {/* Логотип (На мобильном покажется ПЕРВЫМ) */}
+            <div style={{ flex: 1, width: '100%' }}>
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
             </div>
           </div>
@@ -156,7 +174,7 @@ export default function Home() {
             {features.map((feature, index) => (
               <div key={index} style={styles.featureCard}>
                 <div style={styles.iconWrapper}>
-                  <feature.icon color="#ffffff" size={32} />
+                  <feature.icon color="#ffffff" size={28} />
                 </div>
                 <h3 style={styles.cardTitle}>{feature.title}</h3>
                 <p style={styles.cardText}>{feature.description}</p>
@@ -192,7 +210,7 @@ export default function Home() {
           <p style={styles.ctaText}>
             Ev oyunlarında komandamızı arenadan dəstəkləyin və maraqlı səfər qarşıdurmalarını canlı izləyin.
           </p>
-          <Link to="/contact" style={{ ...styles.btnWhite, display: 'inline-block' }}>
+          <Link to="/contact" style={{ ...styles.btnWhite, display: 'inline-block', flex: 'none' }}>
             Bizimlə əlaqə
           </Link>
         </div>
