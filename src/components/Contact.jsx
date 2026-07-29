@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// Встроенная SVG-иконка Facebook
-const FacebookIcon = ({ size = 28 }) => (
+// Встроенная SVG-иконка WhatsApp
+const WhatsappIcon = ({ size = 28 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -15,7 +15,8 @@ const FacebookIcon = ({ size = 28 }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+    <path d="M9 10a0.5.5 0 0 0 1 0V9a0.5.5 0 0 0-.5-.5H9a.5.5 0 0 0-.5.5v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 .5-.5v-.5a.5.5 0 0 0-.5-.5h-1a0.5.5 0 0 0 0 1" />
   </svg>
 );
 
@@ -39,10 +40,8 @@ const InstagramIcon = ({ size = 28 }) => (
 );
 
 export default function Contact() {
-  // Обновленная прямая ссылка на координаты из скриншота
   const googleMapsUrl = "https://www.google.com/maps?q=40.457520,49.720314";
 
-  // Состояния для полей формы
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -52,14 +51,12 @@ export default function Contact() {
     message: ''
   });
 
-  // Состояние статуса отправки письма
   const [status, setStatus] = useState({
     loading: false,
     success: null,
     error: null
   });
 
-  // Обработчик изменения текста в инпутах
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -68,7 +65,6 @@ export default function Contact() {
     }));
   };
 
-  // Функция отправки письма через EmailJS
   const sendEmail = (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: null, error: null });
@@ -95,33 +91,6 @@ export default function Contact() {
         });
       });
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      content: 'absheronik@gmail.com',
-      link: 'mailto:absheronik@gmail.com',
-    },
-    {
-      icon: Phone,
-      title: 'Telefon',
-      content: '+994 12 XXX XX XX',
-      link: 'tel:+99412XXXXXXX',
-    },
-    {
-      icon: MapPin,
-      title: 'Ünvan',
-      content: 'Xırdalan şəhəri, AAAF Park yaxınlığı', // Обновленный текст адреса
-      link: googleMapsUrl,
-    },
-    {
-      icon: Clock,
-      title: 'İş saatları',
-      content: 'B.e.-C.: 08:00 – 17:00',
-      link: null,
-    },
-  ];
 
   const styles = {
     hero: {
@@ -158,7 +127,7 @@ export default function Contact() {
       margin: '0 auto 16px auto'
     },
     cardTitle: { fontWeight: 'bold', marginBottom: '8px', color: '#1f2937' },
-    cardLink: { fontSize: '0.875rem', color: '#4b5563', textDecoration: 'none' },
+    cardLink: { fontSize: '0.875rem', color: '#4b5563', textDecoration: 'none', display: 'block' },
     formWrapper: { maxWidth: '768px', margin: '0 auto' },
     formTitle: { fontSize: '2rem', fontWeight: 'bold', marginBottom: '16px', textAlign: 'center', color: '#1f2937' },
     formSubtitle: { color: '#4b5563', marginBottom: '48px', textAlign: 'center' },
@@ -231,26 +200,57 @@ export default function Contact() {
       <section style={styles.sectionWhite}>
         <div style={styles.container}>
           <div style={styles.grid4}>
-            {contactInfo.map((item, index) => (
-              <div key={index} style={styles.card}>
-                <div style={styles.iconWrapper}>
-                  <item.icon color="#ffffff" size={28} />
-                </div>
-                <h3 style={styles.cardTitle}>{item.title}</h3>
-                {item.link ? (
-                  <a 
-                    href={item.link} 
-                    target={item.link.startsWith('http') ? "_blank" : undefined}
-                    rel={item.link.startsWith('http') ? "noopener noreferrer" : undefined}
-                    style={{ ...styles.cardLink, color: item.link.startsWith('http') ? '#3E6DB5' : '#4b5563', fontWeight: item.link.startsWith('http') ? '500' : 'normal' }}
-                  >
-                    {item.content}
-                  </a>
-                ) : (
-                  <p style={{ ...styles.cardLink, margin: 0 }}>{item.content}</p>
-                )}
+            
+            {/* Email */}
+            <div style={styles.card}>
+              <div style={styles.iconWrapper}>
+                <Mail color="#ffffff" size={28} />
               </div>
-            ))}
+              <h3 style={styles.cardTitle}>Email</h3>
+              <a href="mailto:absheronik@gmail.com" style={styles.cardLink}>
+                absheronik@gmail.com
+              </a>
+            </div>
+
+            {/* Telefon (С двумя номерами) */}
+            <div style={styles.card}>
+              <div style={styles.iconWrapper}>
+                <Phone color="#ffffff" size={28} />
+              </div>
+              <h3 style={styles.cardTitle}>Telefon</h3>
+              <a href="tel:+994517425151" style={{ ...styles.cardLink, marginBottom: '4px' }}>
+                +994 51 742 51 51
+              </a>
+              <a href="tel:+994559291807" style={styles.cardLink}>
+                +994 55 929 18 07
+              </a>
+            </div>
+
+            {/* Ünvan */}
+            <div style={styles.card}>
+              <div style={styles.iconWrapper}>
+                <MapPin color="#ffffff" size={28} />
+              </div>
+              <h3 style={styles.cardTitle}>Ünvan</h3>
+              <a 
+                href={googleMapsUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ ...styles.cardLink, color: '#3E6DB5', fontWeight: '500' }}
+              >
+                Xırdalan şəhəri, AAAF Park yaxınlığı
+              </a>
+            </div>
+
+            {/* İş saatları */}
+            <div style={styles.card}>
+              <div style={styles.iconWrapper}>
+                <Clock color="#ffffff" size={28} />
+              </div>
+              <h3 style={styles.cardTitle}>İş saatları</h3>
+              <p style={{ ...styles.cardLink, margin: 0 }}>B.e.-C.: 08:00 – 17:00</p>
+            </div>
+
           </div>
         </div>
       </section>
@@ -264,7 +264,6 @@ export default function Contact() {
             
             <form style={styles.form} onSubmit={sendEmail}>
               
-              {/* Вывод статусных сообщений */}
               {status.success && (
                 <div style={{ ...styles.statusMessage, backgroundColor: '#d1e7dd', color: '#0f5132' }}>
                   {status.success}
@@ -370,18 +369,33 @@ export default function Contact() {
           <h2 style={{ ...styles.formTitle, marginBottom: '24px' }}>Sosial şəbəkələrdə bizi izləyin</h2>
           <p style={{ ...styles.formSubtitle, marginBottom: '32px' }}>Klubun bütün xəbərləri, nəticələri və hadisələrindən xəbərdar olun</p>
           <div style={styles.socialContainer}>
-            <a href="#" style={styles.socialCircle}><FacebookIcon size={28} /></a>
             
+            {/* WhatsApp (Заменили Facebook) */}
+            <a 
+              href="https://wa.me/994517425151" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={styles.socialCircle}
+              title="WhatsApp"
+            >
+              <WhatsappIcon size={28} />
+            </a>
+            
+            {/* Instagram */}
             <a 
               href="https://www.instagram.com/abseronik/" 
               target="_blank" 
               rel="noopener noreferrer" 
               style={styles.socialCircle}
+              title="Instagram"
             >
               <InstagramIcon size={28} />
             </a>
             
-            <a href="#" style={styles.socialCircle}><Send size={28} /></a>
+            {/* Telegram / Send */}
+            <a href="#" style={styles.socialCircle} title="Telegram">
+              <Send size={28} />
+            </a>
           </div>
         </div>
       </section>
@@ -393,7 +407,6 @@ export default function Contact() {
           <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
               <div style={styles.mapWrapper}>
-                {/* Обновленный iframe с нужными координатами */}
                 <iframe
                   title="Xırdalan Location"
                   src="https://maps.google.com/maps?q=40.457520,49.720314&hl=az&z=16&output=embed"
