@@ -7,7 +7,7 @@ export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  // 🚀 Автоматический скролл наверх при смене страницы
+  // 🚀 АВТОМАТИЧЕСКИЙ СКРОЛЛ НАВЕРХ ПРИ СМЕНЕ СТРАНИЦЫ
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -33,11 +33,11 @@ export default function Layout() {
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: '#f9fafb',
-      fontFamily: 'system-ui, -apple-system, sans-serif'
+      fontFamily: 'sans-serif'
     },
     header: {
       backgroundColor: '#ffffff',
-      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       position: 'sticky',
       top: 0,
       zIndex: 50
@@ -45,7 +45,7 @@ export default function Layout() {
     navContainer: {
       maxWidth: '1152px',
       margin: '0 auto',
-      padding: '12px 16px',
+      padding: '16px',
       boxSizing: 'border-box'
     },
     navFlex: {
@@ -56,29 +56,39 @@ export default function Layout() {
     logoLink: {
       display: 'flex',
       alignItems: 'center',
+      gap: '12px',
       textDecoration: 'none'
     },
     logoImg: {
-      height: '46px',
-      width: 'auto',
-      objectFit: 'contain'
+      height: '48px',
+      width: 'auto'
+    },
+    logoTitle: {
+      fontSize: '1.25rem',
+      fontWeight: 'bold',
+      color: '#3E6DB5',
+      lineHeight: '1.2'
+    },
+    logoSubtitle: {
+      fontSize: '0.75rem',
+      color: '#4b5563'
     },
     desktopNav: {
       display: 'flex',
       alignItems: 'center',
-      gap: '20px'
+      gap: '24px'
     },
     navLink: (linkPath) => {
       const isReg = linkPath === '/register';
       return {
         textDecoration: 'none',
-        fontSize: '0.95rem',
-        fontWeight: '600',
+        fontSize: '1rem',
+        fontWeight: '500',
         transition: 'all 0.2s ease',
         color: isReg ? '#ffffff' : (isActive(linkPath) ? '#3E6DB5' : '#374151'),
         backgroundColor: isReg ? '#3E6DB5' : 'transparent',
-        padding: isReg ? '8px 18px' : '6px 10px',
-        borderRadius: isReg ? '8px' : '6px',
+        padding: isReg ? '8px 16px' : '0',
+        borderRadius: isReg ? '6px' : '0',
         border: isReg ? '1px solid #3E6DB5' : 'none',
       };
     },
@@ -94,15 +104,15 @@ export default function Layout() {
       justifyContent: 'center'
     },
     mobileNav: {
-      marginTop: '12px',
-      paddingBottom: '12px',
+      marginTop: '16px',
+      paddingBottom: '16px',
       borderTop: '1px solid #e5e7eb',
-      paddingTop: '12px'
+      paddingTop: '16px'
     },
     mobileNavFlex: {
       display: 'flex',
       flexDirection: 'column',
-      gap: '12px'
+      gap: '16px'
     },
     main: {
       flex: 1
@@ -110,16 +120,21 @@ export default function Layout() {
     footer: {
       backgroundColor: '#3E6DB5',
       color: '#ffffff',
-      padding: '40px 16px'
+      padding: '48px 16px'
     },
     footerContainer: {
       maxWidth: '1152px',
       margin: '0 auto'
     },
+    footerGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+      gap: '32px'
+    },
     footerLogo: {
-      height: '56px',
+      height: '64px',
       width: 'auto',
-      marginBottom: '12px'
+      marginBottom: '16px'
     },
     footerText: {
       fontSize: '0.875rem',
@@ -128,9 +143,8 @@ export default function Layout() {
     },
     footerTitle: {
       fontWeight: 'bold',
-      marginBottom: '12px',
-      fontSize: '1rem',
-      color: '#ffffff'
+      marginBottom: '16px',
+      fontSize: '1rem'
     },
     footerLinksFlex: {
       display: 'flex',
@@ -140,58 +154,39 @@ export default function Layout() {
     footerLink: {
       fontSize: '0.875rem',
       color: '#e5e7eb',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      transition: 'color 0.2s ease'
     },
     footerContactSpace: {
       fontSize: '0.875rem',
       color: '#e5e7eb'
     },
     footerContactP: {
-      margin: '0 0 6px 0'
+      margin: '0 0 8px 0'
     },
     copyright: {
       borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-      marginTop: '28px',
-      paddingTop: '20px',
+      marginTop: '32px',
+      paddingTop: '32px',
       textAlign: 'center',
-      fontSize: '0.85rem',
+      fontSize: '0.875rem',
       color: '#e5e7eb'
     }
   };
 
   return (
     <div style={styles.layoutWrapper}>
-      {/* Адаптивные стили */}
-      <style>{`
-        @media (max-width: 991px) {
-          .desktop-only { display: none !important; }
-          .footer-responsive-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-            text-align: center;
-            align-items: center;
-          }
-        }
-        @media (min-width: 992px) {
-          .mobile-only { display: none !important; }
-          .footer-responsive-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 32px;
-            text-align: left;
-          }
-        }
-      `}</style>
-
       {/* Header */}
       <header style={styles.header}>
         <nav style={styles.navContainer}>
           <div style={styles.navFlex}>
-            
-            {/* Logo ONLY (Текст удален) */}
+            {/* Logo */}
             <Link to="/" style={styles.logoLink}>
-              <img src={logo} alt="ABŞERONİK Logo" style={styles.logoImg} />
+              <img src={logo} alt="ABŞERONİK" style={styles.logoImg} />
+              <div>
+                <div style={styles.logoTitle}>ABŞERONİK</div>
+                <div style={styles.logoSubtitle}>Abşeron İdman Klubu</div>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
@@ -213,7 +208,7 @@ export default function Layout() {
               style={styles.mobileMenuBtn}
               className="mobile-only"
             >
-              {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
@@ -248,9 +243,9 @@ export default function Layout() {
       {/* Footer */}
       <footer style={styles.footer}>
         <div style={styles.footerContainer}>
-          <div className="footer-responsive-grid">
+          <div style={styles.footerGrid}>
             <div>
-              <img src={logo} alt="ABŞERONİK Logo" style={styles.footerLogo} />
+              <img src={logo} alt="ABŞERONİK" style={styles.footerLogo} />
               <p style={styles.footerText}>Peşəkar basketbol və futbol klubu</p>
             </div>
             
@@ -285,6 +280,16 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+
+      {/* CSS для скрытия мобильного меню на ПК */}
+      <style>{`
+        @media (max-width: 991px) {
+          .desktop-only { display: none !important; }
+        }
+        @media (min-width: 992px) {
+          .mobile-only { display: none !important; }
+        }
+      `}</style>
     </div>
   );
 }
