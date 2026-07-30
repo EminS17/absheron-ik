@@ -1,7 +1,6 @@
 import React from 'react';
 import { Award, Target, Heart, TrendingUp } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
-// (проверь правильность пути в зависимости от того, где лежит файл)
 
 export default function About() {
   const values = [
@@ -23,7 +22,7 @@ export default function About() {
     {
       icon: TrendingUp,
       title: 'İnkişaf',
-      description: 'Davamlı təkmilləşir və regionda basketbolu inkişaf etdiririk',
+      description: 'Davamlı təkmilləşir, regionda basketbol və futbolu inkişaf etdiririk',
     },
   ];
 
@@ -109,7 +108,7 @@ export default function About() {
       <section style={styles.hero}>
         <div style={styles.container}>
           <h1 style={styles.heroTitle}>Klub haqqında</h1>
-          <p style={styles.heroText}>«ABŞERONİK» basketbol klubunun tarixi, dəyərləri və nailiyyətləri</p>
+          <p style={styles.heroText}>«ABŞERONİK» idman klubunun tarixi, dəyərləri və nailiyyətləri</p>
         </div>
       </section>
 
@@ -124,18 +123,19 @@ export default function About() {
               <h2 style={styles.title}>Bizim tariximiz</h2>
               <div style={styles.textBlock}>
                 <p style={styles.p}>
-                  «ABŞERONİK» basketbol klubu 2022-ci ildə Azərbaycanın Abşeron rayonunda 
-                  peşəkar basketbolu inkişaf etdirmək məqsədilə yaradılıb.
+                  «ABŞERONİK» idman klubu 2022-ci ildə Azərbaycanın Abşeron rayonunda 
+                  təsis edilib. Klubumuz ilk olaraq yalnız basketbol üzrə fəaliyyətə başlayaraq 
+                  regionda peşəkar basketbolu inkişaf etdirməyi qarşısına məqsəd qoymuşdu.
                 </p>
                 <p style={styles.p}>
-                  Qısa müddət ərzində klubumuz ölkə çempionatında dinamik və baxımlı oyun 
+                  Qısa müddət ərzində klubumuz ölkə yarışlarında dinamik və baxımlı oyun 
                   nümayiş etdirərək ən güclü komandalar arasında yer almağı bacardı. Biz komandamızla 
                   fəxr edir və oyun keyfiyyətini daha da yüksəltmək üçün davamlı olaraq çalışırıq.
                 </p>
                 <p style={{ ...styles.p, marginBottom: 0 }}>
-                  «ABŞERONİK» – yalnız bir idman klubu deyil, bu həm də Azərbaycanda basketbolun 
-                  inkişaf mərkəzidir və burada gələcəyin ulduzları yetişdirilir. Biz gənclərə 
-                  sərmayə qoyur, oyunçularımızın peşəkar karyera qurması üçün hər növ şərait yaradırıq.
+                  Bu ildən etibarən isə klubumuz daha da böyüyərək futbol fəaliyyətinə də start verdi – artıq 
+                  klubumuzda futbol məşqləri də keçirilir! «ABŞERONİK» – yalnız bir idman klubu deyil, 
+                  bu həm də Azərbaycanda idmanın inkişaf mərkəzidir və burada gələcəyin ulduzları yetişdirilir.
                 </p>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function About() {
         <div style={styles.container}>
           <h2 style={{ ...styles.heroTitle, color: '#ffffff' }}>Bizim missiyamız</h2>
           <p style={styles.missionText}>
-            Azərbaycanda basketbolu inkişaf etdirmək, istedadlı idmançılar 
+            Azərbaycanda basketbol və futbolu inkişaf etdirmək, istedadlı idmançılar 
             yetişdirmək və azarkeşlərə baxımlı, peşəkar oyunla qələbə sevinci 
             bəxş etməkdir. Biz gənc nəsil üçün örnək olmağa və gəncləri idmanla 
             məşğul olmağa ruhlandırmağa çalışırıq.
