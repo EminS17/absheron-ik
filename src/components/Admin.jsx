@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Trash2, RefreshCw, User, Phone, MapPin, Building, Ruler, Weight, Lock } from 'lucide-react';
+import { Trash2, RefreshCw, User, Phone, MapPin, Building, Ruler, Weight, Lock, Users } from 'lucide-react';
 
-// 🔑 Введите здесь секретный пароль для вас и учителя:
 const ADMIN_PASSWORD = "absheron2026"; 
 
 export default function Admin() {
@@ -10,7 +9,6 @@ export default function Admin() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Проверяем, сохранялся ли пароль ранее в браузере
   useEffect(() => {
     const savedAuth = localStorage.getItem('admin_authenticated');
     if (savedAuth === 'true') {
@@ -19,7 +17,6 @@ export default function Admin() {
     }
   }, []);
 
-  // Обработка ввода пароля
   const handleLogin = (e) => {
     e.preventDefault();
     if (passwordInput === ADMIN_PASSWORD) {
@@ -31,7 +28,6 @@ export default function Admin() {
     }
   };
 
-  // Выход из панели
   const handleLogout = () => {
     localStorage.removeItem('admin_authenticated');
     setIsAuthenticated(false);
@@ -72,7 +68,6 @@ export default function Admin() {
     }
   };
 
-  // 🔒 ЕСЛИ ПАРОЛЬ НЕ ВВЕДЕН — ПОКАЗЫВАЕМ ЭКРАН ВХОДА
   if (!isAuthenticated) {
     return (
       <div style={{ 
@@ -148,7 +143,6 @@ export default function Admin() {
     );
   }
 
-  // 🔓 ЕСЛИ ПАРОЛЬ ВВЕДЕН ВЕРНО — ПОКАЗЫВАЕМ ПАНЕЛЬ АДМИНИСТРАТОРА
   return (
     <div style={{ padding: '16px', maxWidth: '900px', margin: '0 auto', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Шапка */}
@@ -160,7 +154,9 @@ export default function Admin() {
         gap: '12px',
         marginBottom: '20px' 
       }}>
-        <h2 style={{ color: '#102a43', margin: 0, fontSize: '1.4rem' }}>Məşqçi Paneli</h2>
+        <h2 style={{ color: '#102a43', margin: 0, fontSize: '1.4rem' }}>
+          Məşqçi Paneli ({students.length})
+        </h2>
         
         <div style={{ display: 'flex', gap: '8px' }}>
           <button 
@@ -203,88 +199,122 @@ export default function Admin() {
       ) : students.length === 0 ? (
         <p style={{ textAlign: 'center', color: '#64748b' }}>Hələ ki, heç bir şagird qeydiyyatdan keçməyib.</p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          {students.map((s) => (
-            <div 
-              key={s.id} 
-              style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                border: '1px solid #e2e8f0',
-                padding: '16px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
-              }}>
-              {/* Заголовок карточки с именем и кнопкой */}
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'flex-start', 
-                gap: '10px',
-                marginBottom: '12px', 
-                borderBottom: '1px solid #f1f5f9', 
-                paddingBottom: '10px' 
-              }}>
-                <h3 style={{ margin: 0, color: '#0f172a', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-                  <User size={18} color="#0284c7" />
-                  <span>{s.firstName} {s.lastName}</span>
-                  {s.studentClass && <span style={{ color: '#0284c7', fontWeight: 'normal', fontSize: '0.95rem' }}>({s.studentClass})</span>}
-                </h3>
-                
-                <button 
-                  onClick={() => handleDelete(s.id, `${s.firstName} ${s.lastName}`)}
-                  style={{
-                    backgroundColor: '#ef4444',
-                    color: 'white',
-                    border: 'none',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontWeight: '600',
-                    fontSize: '0.85rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    flexShrink: 0
-                  }}>
-                  <Trash2 size={15} /> Sil
-                </button>
-              </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {students.map((s) => {
+            // Универсальное считывание с учетом любых возможных названий полей в Java/JSON:
+            const sClass = s.studentClass || s.class || s.sinif;
+            const sHeight = s.height || s.boy;
+            const sWeight = s.weight || s.ceki;
+            const sSchool = s.school || s.mektəb || s.mekteb;
+            const sAddress = s.address || s.unvan;
+            const sPhone = s.phone || s.studentPhone || s.telefon;
 
-              {/* Данные ученика */}
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
-                gap: '8px', 
-                marginBottom: '12px', 
-                fontSize: '0.88rem', 
-                color: '#334155' 
-              }}>
-                {s.height && <div><Ruler size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /><b>Boy:</b> {s.height} sm</div>}
-                {s.weight && <div><Weight size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /><b>Çəki:</b> {s.weight} kq</div>}
-                {s.school && <div><Building size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /><b>Məktəb:</b> {s.school}</div>}
-                {s.address && <div><MapPin size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /><b>Ünvan:</b> {s.address}</div>}
-                {s.phone && <div><Phone size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /><b>Tel:</b> {s.phone}</div>}
-              </div>
+            const fName = s.fatherName || s.fatherFirstName;
+            const fPhone = s.fatherPhone;
+            const fHeight = s.fatherHeight;
 
-              {/* Данные родителей */}
-              {(s.fatherName || s.fatherPhone || s.fatherHeight || s.motherName || s.motherPhone || s.motherHeight) && (
+            const mName = s.motherName || s.motherFirstName;
+            const mPhone = s.motherPhone;
+            const mHeight = s.motherHeight;
+
+            return (
+              <div 
+                key={s.id} 
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: '12px',
+                  border: '1px solid #e2e8f0',
+                  padding: '16px',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
+                }}>
+                {/* Заголовок карточки с именем и кнопкой */}
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'flex-start', 
+                  gap: '10px',
+                  marginBottom: '12px', 
+                  borderBottom: '1px solid #f1f5f9', 
+                  paddingBottom: '10px' 
+                }}>
+                  <h3 style={{ margin: 0, color: '#0f172a', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                    <User size={20} color="#0284c7" />
+                    <span>{s.firstName || s.name} {s.lastName || s.surname}</span>
+                    {sClass && (
+                      <span style={{ backgroundColor: '#e0f2fe', color: '#0369a1', padding: '2px 8px', borderRadius: '6px', fontSize: '0.85rem', fontWeight: '600' }}>
+                        {sClass} sinif
+                      </span>
+                    )}
+                  </h3>
+                  
+                  <button 
+                    onClick={() => handleDelete(s.id, `${s.firstName || ''} ${s.lastName || ''}`)}
+                    style={{
+                      backgroundColor: '#ef4444',
+                      color: 'white',
+                      border: 'none',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      cursor: 'pointer',
+                      fontWeight: '600',
+                      fontSize: '0.85rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      flexShrink: 0
+                    }}>
+                    <Trash2 size={15} /> Sil
+                  </button>
+                </div>
+
+                {/* Основная информация ученика */}
+                <div style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+                  gap: '10px', 
+                  marginBottom: '14px', 
+                  fontSize: '0.9rem', 
+                  color: '#334155' 
+                }}>
+                  {sHeight && <div><Ruler size={15} style={{ verticalAlign: 'middle', marginRight: '6px', color: '#0284c7' }} /><b>Boy:</b> {sHeight} sm</div>}
+                  {sWeight && <div><Weight size={15} style={{ verticalAlign: 'middle', marginRight: '6px', color: '#0284c7' }} /><b>Çəki:</b> {sWeight} kq</div>}
+                  {sSchool && <div><Building size={15} style={{ verticalAlign: 'middle', marginRight: '6px', color: '#0284c7' }} /><b>Məktəb:</b> {sSchool}</div>}
+                  {sAddress && <div><MapPin size={15} style={{ verticalAlign: 'middle', marginRight: '6px', color: '#0284c7' }} /><b>Ünvan:</b> {sAddress}</div>}
+                  {sPhone && <div><Phone size={15} style={{ verticalAlign: 'middle', marginRight: '6px', color: '#0284c7' }} /><b>Tel:</b> {sPhone}</div>}
+                </div>
+
+                {/* Данные родителей */}
                 <div style={{ 
                   backgroundColor: '#f8fafc', 
-                  padding: '10px 12px', 
+                  padding: '12px', 
                   borderRadius: '8px', 
-                  border: '1px dashed #cbd5e1', 
-                  fontSize: '0.82rem', 
+                  border: '1px solid #e2e8f0', 
+                  fontSize: '0.85rem', 
                   color: '#475569' 
                 }}>
-                  <b style={{ color: '#1e293b', display: 'block', marginBottom: '4px' }}>Valideynlər:</b>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '6px' }}>
-                    <div><b>Ata:</b> {s.fatherName || '—'} | {s.fatherPhone || '—'} {s.fatherHeight && `(${s.fatherHeight} sm)`}</div>
-                    <div><b>Ana:</b> {s.motherName || '—'} | {s.motherPhone || '—'} {s.motherHeight && `(${s.motherHeight} sm)`}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#1e293b', fontWeight: 'bold', marginBottom: '8px' }}>
+                    <Users size={16} color="#0284c7" /> Valideynlərin Məlumatları:
+                  </div>
+                  
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>
+                    {/* АТА */}
+                    <div style={{ backgroundColor: '#ffffff', padding: '8px 10px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
+                      <b style={{ color: '#0f172a' }}>Ata:</b> {fName || '—'}
+                      <div style={{ marginTop: '4px' }}><b>Tel:</b> {fPhone || '—'}</div>
+                      {fHeight && <div style={{ marginTop: '2px' }}><b>Boy:</b> {fHeight} sm</div>}
+                    </div>
+
+                    {/* АНА */}
+                    <div style={{ backgroundColor: '#ffffff', padding: '8px 10px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
+                      <b style={{ color: '#0f172a' }}>Ana:</b> {mName || '—'}
+                      <div style={{ marginTop: '4px' }}><b>Tel:</b> {mPhone || '—'}</div>
+                      {mHeight && <div style={{ marginTop: '2px' }}><b>Boy:</b> {mHeight} sm</div>}
+                    </div>
                   </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
