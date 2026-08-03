@@ -53,7 +53,6 @@ export default function Register() {
     };
 
     try {
-      // Обновлено: запрос отправляется на живой бэкенд Render
       const response = await fetch('https://absheron-ik-back.onrender.com/api/students/register', {
         method: 'POST',
         headers: {
@@ -61,6 +60,16 @@ export default function Register() {
         },
         body: JSON.stringify(payload)
       });
+
+      // ⛔ ПРОВЕРКА ОГРАНИЧЕНИЯ ЗАПРОСОВ (RATE LIMITING 429)
+      if (response.status === 429) {
+        setStatus({
+          loading: false,
+          success: null,
+          error: 'Çoxlu sorğu göndərdiniz! Zəhmət olmasa 1 dəqiqə gözləyin.'
+        });
+        return;
+      }
 
       if (!response.ok) {
         throw new Error('Server error');
