@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Target, Heart, TrendingUp } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
+import kitImage from '/src/assets/kit.jpg'; // Путь к изображению формы
 
 export default function About() {
   const values = [
@@ -26,13 +27,6 @@ export default function About() {
     },
   ];
 
-  const achievements = [
-    { year: '2025', title: 'Azərbaycan Superliqasının çempionu' },
-    { year: '2024', title: 'Ölkə kubokunun qalibi' },
-    { year: '2023', title: 'Çempionatın pley-off mərhələsinə vəsiqə' },
-    { year: '2022', title: 'Klubun təsis edilməsi' },
-  ];
-
   // Объект со стилями
   const styles = {
     hero: {
@@ -54,6 +48,14 @@ export default function About() {
       alignItems: 'center'
     },
     logo: { width: '100%', maxWidth: '448px', display: 'block', margin: '0 auto' },
+    kitLogo: { 
+      width: '100%', 
+      maxWidth: '600px', 
+      display: 'block', 
+      margin: '0 auto', 
+      borderRadius: '16px',
+      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' 
+    },
     title: { fontSize: '2rem', fontWeight: 'bold', marginBottom: '24px', color: '#1f2937' },
     textBlock: { color: '#4b5563', lineHeight: '1.6' },
     p: { marginBottom: '16px' },
@@ -81,24 +83,6 @@ export default function About() {
     },
     cardTitle: { fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '8px', color: '#1f2937' },
     cardText: { fontSize: '0.875rem', color: '#4b5563', margin: 0 },
-    timelineContainer: { maxWidth: '768px', margin: '0 auto', position: 'relative' },
-    timelineLine: { position: 'absolute', left: '32px', top: 0, bottom: 0, width: '2px', backgroundColor: '#3E6DB5' },
-    timelineItem: { position: 'relative', paddingLeft: '80px', paddingBottom: '48px' },
-    timelineDot: {
-      position: 'absolute',
-      left: '20px',
-      top: '4px',
-      width: '28px',
-      height: '28px',
-      backgroundColor: '#3E6DB5',
-      borderRadius: '50%',
-      border: '4px solid #ffffff',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-      zIndex: 2
-    },
-    timelineContent: { backgroundColor: '#f9fafb', padding: '24px', borderRadius: '8px', boxShadow: '0 1px 2px rgba(0,0,0,0.05)' },
-    year: { fontSize: '1.5rem', fontWeight: 'bold', color: '#3E6DB5', marginBottom: '8px' },
-    achTitle: { fontSize: '1.125rem', fontWeight: '600', color: '#1f2937' },
     missionText: { fontSize: '1.25rem', color: '#f3f4f6', maxWidth: '896px', margin: '0 auto', lineHeight: '1.6' }
   };
 
@@ -108,7 +92,7 @@ export default function About() {
       <section style={styles.hero}>
         <div style={styles.container}>
           <h1 style={styles.heroTitle}>Klub haqqında</h1>
-          <p style={styles.heroText}>«ABŞERONİK» idman klubunun tarixi, dəyərləri və nailiyyətləri</p>
+          <p style={styles.heroText}>«ABŞERONİK» idman klubunun tarixi və dəyərləri</p>
         </div>
       </section>
 
@@ -161,22 +145,12 @@ export default function About() {
         </div>
       </section>
 
-      {/* Achievements Section */}
+      {/* Club Kit Section */}
       <section style={styles.sectionWhite}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.title, textAlign: 'center', marginBottom: '48px' }}>Uğurlarımız</h2>
-          <div style={styles.timelineContainer}>
-            <div style={styles.timelineLine}></div>
-            
-            {achievements.map((achievement, index) => (
-              <div key={index} style={{ ...styles.timelineItem, paddingBottom: index === achievements.length - 1 ? 0 : '48px' }}>
-                <div style={styles.timelineDot}></div>
-                <div style={styles.timelineContent}>
-                  <div style={styles.year}>{achievement.year}</div>
-                  <div style={styles.achTitle}>{achievement.title}</div>
-                </div>
-              </div>
-            ))}
+          <h2 style={{ ...styles.title, textAlign: 'center', marginBottom: '32px' }}>Klubumuzun forması</h2>
+          <div>
+            <img src={kitImage} alt="Klubumuzun forması" style={styles.kitLogo} />
           </div>
         </div>
       </section>
