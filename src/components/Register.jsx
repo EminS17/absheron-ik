@@ -77,7 +77,7 @@ export default function Register() {
 
       setStatus({
         loading: false,
-        success: 'Qeydiyyat uğurla tamamlandı! Şagirdin məlumatları bazaya əlavə olundu.',
+        success: 'Qeydiyyat uğurla tamamlandı! Tələbənin məlumatları bazaya əlavə olundu.',
         error: null
       });
 
@@ -217,7 +217,7 @@ export default function Register() {
   return (
     <div style={styles.page}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Şagird Qeydiyyatı</h2>
+        <h2 style={styles.title}>Tələbə Qeydiyyatı</h2>
         <p style={styles.subtitle}>Klubumuza üzv olmaq üçün aşağıdakı xanaları doldurun</p>
 
         {status.success && (
@@ -233,22 +233,22 @@ export default function Register() {
 
         <form onSubmit={handleRegister}>
           
-          {/* Блок 1: Данные ученика */}
-          <div style={{ ...styles.sectionTitle, marginTop: 0 }}>Şagirdin məlumatları</div>
+          {/* Блок 1: Данные студента */}
+          <div style={{ ...styles.sectionTitle, marginTop: 0 }}>Tələbənin məlumatları</div>
           
           <div className="form-grid">
             <div style={styles.formGroup}>
               <label style={styles.label}>Adı</label>
               <div style={styles.inputWrapper}>
                 <User size={18} style={styles.icon} />
-                <input type="text" name="student_name" value={formData.student_name} onChange={handleChange} style={styles.input} placeholder="Şagirdin adı" required />
+                <input type="text" name="student_name" value={formData.student_name} onChange={handleChange} style={styles.input} placeholder="Tələbənin adı" required />
               </div>
             </div>
             <div style={styles.formGroup}>
               <label style={styles.label}>Soyadı</label>
               <div style={styles.inputWrapper}>
                 <User size={18} style={styles.icon} />
-                <input type="text" name="student_surname" value={formData.student_surname} onChange={handleChange} style={styles.input} placeholder="Şagirdin soyadı" required />
+                <input type="text" name="student_surname" value={formData.student_surname} onChange={handleChange} style={styles.input} placeholder="Tələbənin soyadı" required />
               </div>
             </div>
             <div style={styles.formGroup}>
@@ -280,7 +280,7 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Новое поле: Адрес */}
+            {/* Адрес */}
             <div style={{ ...styles.formGroup, gridColumn: '1 / -1' }} className="full-width">
               <label style={styles.label}>Ünvan (Yaşayış yeri)</label>
               <div style={styles.inputWrapper}>
@@ -290,7 +290,7 @@ export default function Register() {
             </div>
 
             <div style={{ ...styles.formGroup, gridColumn: '1 / -1' }} className="full-width">
-              <label style={styles.label}>Şagirdin öz telefonu <span style={{color: '#9fb3c8', fontWeight: 'normal'}}>(vacib deyil)</span></label>
+              <label style={styles.label}>Tələbənin öz əlaqə nömrəsi <span style={{color: '#9fb3c8', fontWeight: 'normal'}}>(vacib deyil)</span></label>
               <div style={styles.inputWrapper}>
                 <Phone size={18} style={styles.icon} />
                 <input type="tel" name="student_phone" value={formData.student_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" />
@@ -317,20 +317,6 @@ export default function Register() {
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Atasının telefonu</label>
-              <div style={styles.inputWrapper}>
-                <Phone size={18} style={styles.icon} />
-                <input type="tel" name="father_phone" value={formData.father_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" required />
-              </div>
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Anasının telefonu</label>
-              <div style={styles.inputWrapper}>
-                <Phone size={18} style={styles.icon} />
-                <input type="tel" name="mother_phone" value={formData.mother_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" required />
-              </div>
-            </div>
-            <div style={styles.formGroup}>
               <label style={styles.label}>Atasının boyu (sm)</label>
               <div style={styles.inputWrapper}>
                 <Ruler size={18} style={styles.icon} />
@@ -342,6 +328,20 @@ export default function Register() {
               <div style={styles.inputWrapper}>
                 <Ruler size={18} style={styles.icon} />
                 <input type="number" name="mother_height" value={formData.mother_height} onChange={handleChange} style={styles.input} placeholder="Məs: 168" required />
+              </div>
+            </div>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Atasının əlaqə nömrəsi</label>
+              <div style={styles.inputWrapper}>
+                <Phone size={18} style={styles.icon} />
+                <input type="tel" name="father_phone" value={formData.father_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" required />
+              </div>
+            </div>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Anasının əlaqə nömrəsi</label>
+              <div style={styles.inputWrapper}>
+                <Phone size={18} style={styles.icon} />
+                <input type="tel" name="mother_phone" value={formData.mother_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" required />
               </div>
             </div>
           </div>
