@@ -1,30 +1,6 @@
 import React, { useState } from 'react';
-import { Users } from 'lucide-react';
 
 export default function Team() {
-  const coaches = [
-    {
-      name: 'Mir Huseyin Heydərli',
-      position: 'Baş məşqçi',
-      experience: '15 il təcrübə',
-    },
-    {
-      name: 'Mələk Quliyeva',
-      position: 'Məşqçi köməkçisi',
-      experience: '5 il təcrübə',
-    },
-    {
-      name: 'Ibrahim Qələndərli',
-      position: 'Məşqçi',
-      experience: '10 il təcrübə',
-    },
-    {
-      name: 'Amil Əlizadə',
-      position: 'Məşqçi',
-      experience: '7 il təcrübə',
-    },
-  ];
-
   const players = [
     {
       number: '1',
@@ -78,6 +54,10 @@ export default function Team() {
 
   const staff = [
     { name: 'Nihad Mahmudzade', position: 'Klubun sahibi' },
+    { name: 'Mir Huseyin Heydərli', position: 'Baş məşqçi' },
+    { name: 'Mələk Quliyeva', position: 'Məşqçi köməkçisi' },
+    { name: 'Ibrahim Qələndərli', position: 'Məşqçi' },
+    { name: 'Amil Əlizadə', position: 'Məşqçi' },
   ];
 
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
@@ -120,45 +100,6 @@ export default function Team() {
       textAlign: 'center',
       marginBottom: '48px',
       color: '#1f2937'
-    },
-    coachesGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-      gap: '32px',
-      maxWidth: '1100px',
-      margin: '0 auto'
-    },
-    coachCard: {
-      background: 'linear-gradient(135deg, #3E6DB5 0%, #2C5294 100%)',
-      borderRadius: '12px',
-      padding: '32px',
-      color: '#ffffff',
-      textAlign: 'center'
-    },
-    iconWrapper: {
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-      width: '96px',
-      height: '96px',
-      borderRadius: '50%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '0 auto 24px auto'
-    },
-    coachName: {
-      fontSize: '1.35rem',
-      fontWeight: 'bold',
-      margin: '0 0 8px 0'
-    },
-    coachPos: {
-      fontSize: '1.125rem',
-      color: '#f3f4f6',
-      margin: '0 0 8px 0'
-    },
-    coachExp: {
-      fontSize: '0.875rem',
-      color: '#e5e7eb',
-      margin: 0
     },
     playersGrid: {
       display: 'grid',
@@ -218,7 +159,7 @@ export default function Team() {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
       gap: '24px',
-      maxWidth: '896px',
+      maxWidth: '1000px',
       margin: '0 auto'
     },
     staffCard: (isHovered) => ({
@@ -268,27 +209,8 @@ export default function Team() {
         <div style={styles.container}>
           <h1 style={styles.heroTitle}>Heyətimiz</h1>
           <p style={styles.heroSubtitle}>
-            ABŞERONİK-in oyunçuları və məşqçiləri ilə tanış olun
+            ABŞERONİK-in oyunçuları və heyəti ilə tanış olun
           </p>
-        </div>
-      </section>
-
-      {/* Coaches Section */}
-      <section style={{ ...styles.section, ...styles.bgWhite }}>
-        <div style={styles.container}>
-          <h2 style={styles.sectionTitle}>Məşqçi heyəti</h2>
-          <div style={styles.coachesGrid}>
-            {coaches.map((coach, index) => (
-              <div key={index} style={styles.coachCard}>
-                <div style={styles.iconWrapper}>
-                  <Users size={48} />
-                </div>
-                <h3 style={styles.coachName}>{coach.name}</h3>
-                <p style={styles.coachPos}>{coach.position}</p>
-                <p style={styles.coachExp}>{coach.experience}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
