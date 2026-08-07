@@ -4,7 +4,7 @@ import { Users } from 'lucide-react';
 export default function Team() {
   const coaches = [
     {
-      name: 'Huseyin Heydərli',
+      name: 'Mir Huseyin Heydərli',
       position: 'Baş məşqçi',
       experience: '15 il təcrübə',
     },
@@ -12,6 +12,16 @@ export default function Team() {
       name: 'Mələk Quliyeva',
       position: 'Məşqçi köməkçisi',
       experience: '5 il təcrübə',
+    },
+    {
+      name: 'Ibrahim Qələndərli',
+      position: 'Məşqçi',
+      experience: '10 il təcrübə',
+    },
+    {
+      name: 'Amil Əlizadə',
+      position: 'Məşqçi',
+      experience: '7 il təcrübə',
     },
   ];
 
@@ -67,7 +77,7 @@ export default function Team() {
   ];
 
   const staff = [
-    { name: 'Nihad Mahmudzade', position: 'Komanda meneceri' },
+    { name: 'Nihad Mahmudzade', position: 'Klubun sahibi' },
   ];
 
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
@@ -113,9 +123,9 @@ export default function Team() {
     },
     coachesGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
       gap: '32px',
-      maxWidth: '896px',
+      maxWidth: '1100px',
       margin: '0 auto'
     },
     coachCard: {
@@ -136,7 +146,7 @@ export default function Team() {
       margin: '0 auto 24px auto'
     },
     coachName: {
-      fontSize: '1.5rem',
+      fontSize: '1.35rem',
       fontWeight: 'bold',
       margin: '0 0 8px 0'
     },
