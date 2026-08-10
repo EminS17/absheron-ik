@@ -299,7 +299,7 @@ export default function Team() {
       {/* Join Section */}
       <section style={styles.joinSection}>
         <div style={styles.container}>
-          <h2 style={styles.joinTitle}>Komandamıza qoşulmaq istəyirsiniz?</h2>
+          <h2 style={styles.joinTitle}>Bizim missiamız</h2>
           <p style={styles.joinText}>
             Biz həmişə istedadlı oyunçular və mütəxəssislər axtarırıq.
             Əlavə məlumat üçün bizimlə əlaqə saxlayın.
