@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Phone, School, Award, Ruler, CheckCircle2, AlertCircle, ArrowRight, MapPin } from 'lucide-react';
+import { User, Phone, School, Award, Ruler, CheckCircle2, AlertCircle, ArrowRight, MapPin, Loader2 } from 'lucide-react';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -211,6 +211,17 @@ export default function Register() {
       gap: '10px',
       fontSize: '0.9rem',
       fontWeight: '500'
+    },
+    loadingNotice: {
+      marginTop: '12px',
+      fontSize: '0.85rem',
+      color: '#627d98',
+      textAlign: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '6px',
+      fontWeight: '500'
     }
   };
 
@@ -350,6 +361,14 @@ export default function Register() {
             {status.loading ? 'Göndərilir...' : 'Qeydiyyatdan keçmək'}
             <ArrowRight size={18} />
           </button>
+
+          {/* Текст уведомления о процессе отправки */}
+          {status.loading && (
+            <div style={styles.loadingNotice}>
+              <Loader2 size={16} className="spin-icon" />
+              <span>Məlumatlar göndərilir, zəhmət olmasa 1 dəqiqə gözləyin...</span>
+            </div>
+          )}
         </form>
       </div>
 
@@ -358,6 +377,13 @@ export default function Register() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 16px;
+        }
+        .spin-icon {
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
         @media (max-width: 580px) {
           .form-grid {
