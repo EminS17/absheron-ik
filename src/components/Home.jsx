@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Trophy, Users, Calendar } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
-import teamPhoto from '/src/assets/team-photo.jpeg'; // Путь к фотографии команды (сохраните фото в src/assets/team-photo.jpeg)
+import teamPhoto from '/src/assets/team-photo.jpeg'; // Путь к фото команды
 
 export default function Home() {
   const features = [
@@ -26,11 +26,11 @@ export default function Home() {
   const news = [
     {
       id: 1,
-      title: 'Dubaya səfərimiz',
+      title: 'İTV kanalında çıxışımız',
       date: '10 avqust 2026',
-      description: 'Komandamızın Dubay səfərindən maraqlı anlar və videoxülasə.',
+      description: 'Klubumuzun İTV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.',
       videoUrl: 'https://www.youtube.com/watch?v=cnHeLAYzSR0',
-      image: null,
+      image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg', // Кадр из видео
     },
     {
       id: 2,
@@ -171,7 +171,7 @@ export default function Home() {
         <div style={styles.container}>
           <div className="hero-grid-responsive">
             
-            {/* Блок с логотипом (первый на мобильных) */}
+            {/* Блок с логотипом */}
             <div className="hero-logo-box">
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
             </div>
