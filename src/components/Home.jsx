@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Trophy, Users, Calendar } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
+import teamPhoto from '/src/assets/team-photo.jpeg'; // Путь к фотографии команды (сохраните фото в src/assets/team-photo.jpeg)
 
 export default function Home() {
   const features = [
@@ -25,21 +26,27 @@ export default function Home() {
   const news = [
     {
       id: 1,
-      title: 'Basketbol ev oyununda qələbə',
-      date: '15 fevral 2026',
-      description: 'ABŞERONİK basketbol komandası 87:72 hesabı ilə əmin qələbə qazandı',
+      title: 'Dubaya səfərimiz',
+      date: '10 avqust 2026',
+      description: 'Komandamızın Dubay səfərindən maraqlı anlar və videoxülasə.',
+      videoUrl: 'https://www.youtube.com/watch?v=cnHeLAYzSR0',
+      image: null,
     },
     {
       id: 2,
-      title: 'Futbol komandamıza yeni oyunçu',
-      date: '10 fevral 2026',
-      description: 'Klubumuzun futbol heyətinə hücumameyilli təcrübəli hücumçu qoşuldu',
+      title: 'Masazırla görüşdə qələbə',
+      date: '8 avqust 2026',
+      description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
+      videoUrl: null,
+      image: teamPhoto,
     },
     {
       id: 3,
       title: 'Qarşıdakı səfər oyunları',
-      date: '8 fevral 2026',
-      description: 'Komandalarımız mühüm səfər turnirlərinə fəal hazırlaşır',
+      date: '5 avqust 2026',
+      description: 'Komandalarımız mühüm səfər turnirlərinə fəal hazırlaşır.',
+      videoUrl: null,
+      image: null,
     },
   ];
 
@@ -106,13 +113,17 @@ export default function Home() {
       backgroundColor: '#ffffff',
       borderRadius: '12px',
       overflow: 'hidden',
-      boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+      boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+      display: 'flex',
+      flexDirection: 'column'
     },
     newsImage: {
-      height: '160px',
-      background: 'linear-gradient(135deg, #3E6DB5, #2C5294)'
+      height: '180px',
+      background: 'linear-gradient(135deg, #3E6DB5, #2C5294)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
     },
-    newsContent: { padding: '20px' },
+    newsContent: { padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' },
     newsDate: { fontSize: '0.85rem', color: '#9ca3af', marginBottom: '8px' },
     ctaText: { fontSize: '1.1rem', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' }
   };
@@ -208,11 +219,36 @@ export default function Home() {
           <div style={styles.grid3}>
             {news.map((item) => (
               <div key={item.id} style={styles.newsCard}>
-                <div style={styles.newsImage}></div>
+                <div 
+                  style={{
+                    ...styles.newsImage,
+                    ...(item.image ? { backgroundImage: `url(${item.image})` } : {})
+                  }}
+                ></div>
                 <div style={styles.newsContent}>
                   <div style={styles.newsDate}>{item.date}</div>
                   <h3 style={styles.cardTitle}>{item.title}</h3>
-                  <p style={styles.cardText}>{item.description}</p>
+                  <p style={{ ...styles.cardText, marginBottom: item.videoUrl ? '16px' : '0' }}>
+                    {item.description}
+                  </p>
+                  
+                  {item.videoUrl && (
+                    <a
+                      href={item.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        marginTop: 'auto',
+                        paddingTop: '12px',
+                        color: '#3E6DB5',
+                        fontWeight: '600',
+                        textDecoration: 'none',
+                        fontSize: '0.95rem'
+                      }}
+                    >
+                      Videonu izlə →
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
