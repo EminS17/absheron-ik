@@ -27,26 +27,23 @@ export default function Home() {
     {
       id: 1,
       title: 'İTV kanalında çıxışımız',
-      date: '10 avqust 2026',
       description: 'Klubumuzun İTV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.',
       videoUrl: 'https://www.youtube.com/watch?v=cnHeLAYzSR0',
-      image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg', // Кадр из видео
+      image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg', // Превью кадра из видео
     },
     {
       id: 2,
       title: 'Masazırla görüşdə qələbə',
-      date: '8 avqust 2026',
       description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
       videoUrl: null,
       image: teamPhoto,
     },
     {
       id: 3,
-      title: 'Qarşıdakı səfər oyunları',
-      date: '5 avqust 2026',
-      description: 'Komandalarımız mühüm səfər turnirlərinə fəal hazırlaşır.',
+      title: 'Dubaya səfərimiz',
+      description: 'Komandamız xarici təlim-məşq toplanışları və beynəlxalq təcrübə çərçivəsində Dubay şəhərinə səfər etdi.',
       videoUrl: null,
-      image: null,
+      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80', // Изображение Дубая
     },
   ];
 
@@ -124,7 +121,6 @@ export default function Home() {
       backgroundPosition: 'center'
     },
     newsContent: { padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' },
-    newsDate: { fontSize: '0.85rem', color: '#9ca3af', marginBottom: '8px' },
     ctaText: { fontSize: '1.1rem', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' }
   };
 
@@ -226,7 +222,6 @@ export default function Home() {
                   }}
                 ></div>
                 <div style={styles.newsContent}>
-                  <div style={styles.newsDate}>{item.date}</div>
                   <h3 style={styles.cardTitle}>{item.title}</h3>
                   <p style={{ ...styles.cardText, marginBottom: item.videoUrl ? '16px' : '0' }}>
                     {item.description}
