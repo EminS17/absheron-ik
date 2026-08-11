@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Trophy, Users, Calendar } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
 import teamPhoto from '/src/assets/team-photo.jpeg'; // Путь к фото команды
+import gymPhoto from '/src/assets/gym.jpg'; // Путь к фото нового зала
 
 export default function Home() {
   const features = [
@@ -26,8 +27,8 @@ export default function Home() {
   const news = [
     {
       id: 1,
-      title: 'İTV kanalında çıxışımız',
-      description: 'Klubumuzun İTV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.',
+      title: 'Xəzər TV kanalında çıxışımız',
+      description: 'Klubumuzun Xəzər TV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.',
       videoUrl: 'https://www.youtube.com/watch?v=cnHeLAYzSR0',
       image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg', // Превью кадра из видео
     },
@@ -40,10 +41,10 @@ export default function Home() {
     },
     {
       id: 3,
-      title: 'Dubaya səfərimiz',
-      description: 'Komandamız xarici təlim-məşq toplanışları və beynəlxalq təcrübə çərçivəsində Dubay şəhərinə səfər etdi.',
+      title: 'Yeni idman zalımız',
+      description: 'Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.',
       videoUrl: null,
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80', // Изображение Дубая
+      image: gymPhoto,
     },
   ];
 
