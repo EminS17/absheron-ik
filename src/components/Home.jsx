@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router';
 import { Trophy, Users, Calendar, X, ZoomIn } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
-import teamPhoto from '/src/assets/team-photo.jpeg'; // Путь к фото команды
-import gymPhoto from '/src/assets/gym.jpg'; // Путь к фото нового зала
 
 export default function Home() {
-  const [activeImage, setActiveImage] = useState(null); // Состояние для просмотра фото во весь экран
+  const [activeImage, setActiveImage] = useState(null);
 
   const features = [
     {
@@ -40,7 +38,7 @@ export default function Home() {
       title: 'Masazırla görüşdə qələbə',
       description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
       videoUrl: null,
-      image: teamPhoto,
+      image: '/src/assets/team-photo.jpeg', // Убедитесь, что имя файла совпадает с вашим
       isClickableImage: true
     },
     {
@@ -48,7 +46,7 @@ export default function Home() {
       title: 'Yeni idman zalımız',
       description: 'Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.',
       videoUrl: null,
-      image: gymPhoto,
+      image: '/src/assets/gym.jpg', // Убедитесь, что имя файла совпадает с вашим
       isClickableImage: true
     },
   ];
@@ -131,7 +129,6 @@ export default function Home() {
     newsContent: { padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' },
     ctaText: { fontSize: '1.1rem', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' },
     
-    // Стили для полноэкранного просмотра (Modal)
     modalOverlay: {
       position: 'fixed',
       top: 0,
@@ -333,7 +330,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Полноэкранный просмотр изображений (Modal Window) */}
+      {/* Modal Window */}
       {activeImage && (
         <div style={styles.modalOverlay} onClick={() => setActiveImage(null)}>
           <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
