@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router';
-import { Trophy, Users, Calendar } from 'lucide-react';
+import { Trophy, Users, Calendar, X, ZoomIn } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
 import teamPhoto from '/src/assets/team-photo.jpeg'; // Путь к фото команды
 import gymPhoto from '/src/assets/gym.jpg'; // Путь к фото нового зала
 
 export default function Home() {
+  const [activeImage, setActiveImage] = useState(null); // Состояние для просмотра фото во весь экран
+
   const features = [
     {
       icon: Trophy,
@@ -30,7 +32,8 @@ export default function Home() {
       title: 'Xəzər TV kanalında çıxışımız',
       description: 'Klubumuzun Xəzər TV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.',
       videoUrl: 'https://www.youtube.com/watch?v=cnHeLAYzSR0',
-      image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg', // Превью кадра из видео
+      image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg',
+      isClickableImage: false
     },
     {
       id: 2,
@@ -38,6 +41,7 @@ export default function Home() {
       description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
       videoUrl: null,
       image: teamPhoto,
+      isClickableImage: true
     },
     {
       id: 3,
@@ -45,6 +49,7 @@ export default function Home() {
       description: 'Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.',
       videoUrl: null,
       image: gymPhoto,
+      isClickableImage: true
     },
   ];
 
@@ -115,19 +120,65 @@ export default function Home() {
       display: 'flex',
       flexDirection: 'column'
     },
-    newsImage: {
+    newsImage: (isClickable) => ({
       height: '180px',
       background: 'linear-gradient(135deg, #3E6DB5, #2C5294)',
       backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    },
+      backgroundPosition: 'center',
+      cursor: isClickable ? 'pointer' : 'default',
+      position: 'relative'
+    }),
     newsContent: { padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' },
-    ctaText: { fontSize: '1.1rem', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' }
+    ctaText: { fontSize: '1.1rem', color: '#f3f4f6', maxWidth: '640px', margin: '0 auto 32px auto' },
+    
+    // Стили для полноэкранного просмотра (Modal)
+    modalOverlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000,
+      padding: '16px'
+    },
+    modalContent: {
+      position: 'relative',
+      maxWidth: '900px',
+      width: '100%',
+      maxHeight: '90vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    modalImage: {
+      maxWidth: '100%',
+      maxHeight: '85vh',
+      borderRadius: '8px',
+      objectFit: 'contain',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+    },
+    closeButton: {
+      position: 'absolute',
+      top: '-40px',
+      right: '0',
+      background: 'transparent',
+      border: 'none',
+      color: '#ffffff',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '4px',
+      fontSize: '1rem',
+      fontWeight: '600'
+    }
   };
 
   return (
     <div>
-      {/* Принудительное управление порядком отображения */}
       <style>{`
         .hero-grid-responsive {
           display: flex;
@@ -143,6 +194,20 @@ export default function Home() {
         .hero-text-box {
           order: 2 !important;
           width: 100%;
+        }
+        .zoom-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.25);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          color: white;
+        }
+        .news-image-wrapper:hover .zoom-overlay {
+          opacity: 1;
         }
 
         @media (min-width: 768px) {
@@ -167,13 +232,9 @@ export default function Home() {
       <section style={styles.hero}>
         <div style={styles.container}>
           <div className="hero-grid-responsive">
-            
-            {/* Блок с логотипом */}
             <div className="hero-logo-box">
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
             </div>
-
-            {/* Текстовый блок */}
             <div className="hero-text-box">
               <h1 style={styles.heroTitle}>ABŞERONİK</h1>
               <p style={styles.heroSubtitle}>Abşeron İdman Klubu</p>
@@ -186,7 +247,6 @@ export default function Home() {
                 <Link to="/team" style={styles.btnOutline}>Komanda</Link>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -217,11 +277,19 @@ export default function Home() {
             {news.map((item) => (
               <div key={item.id} style={styles.newsCard}>
                 <div 
+                  className={item.isClickableImage ? "news-image-wrapper" : ""}
                   style={{
-                    ...styles.newsImage,
+                    ...styles.newsImage(item.isClickableImage),
                     ...(item.image ? { backgroundImage: `url(${item.image})` } : {})
                   }}
-                ></div>
+                  onClick={() => item.isClickableImage && setActiveImage(item.image)}
+                >
+                  {item.isClickableImage && (
+                    <div className="zoom-overlay">
+                      <ZoomIn size={32} />
+                    </div>
+                  )}
+                </div>
                 <div style={styles.newsContent}>
                   <h3 style={styles.cardTitle}>{item.title}</h3>
                   <p style={{ ...styles.cardText, marginBottom: item.videoUrl ? '16px' : '0' }}>
@@ -264,6 +332,18 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Полноэкранный просмотр изображений (Modal Window) */}
+      {activeImage && (
+        <div style={styles.modalOverlay} onClick={() => setActiveImage(null)}>
+          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button style={styles.closeButton} onClick={() => setActiveImage(null)}>
+              <X size={24} /> Bağla
+            </button>
+            <img src={activeImage} alt="Böyüdülmüş şəkil" style={styles.modalImage} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
