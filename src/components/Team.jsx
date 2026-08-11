@@ -55,10 +55,10 @@ export default function Team() {
 
   const staff = [
     { name: 'Nihad Mahmudzade', position: 'Klubun Təsisçisi', isOwner: true },
-    { name: 'Mir Huseyin Heydərli', position: 'Baş məşqçi' },
+    { name: 'MirHuseyin Heydərli', position: 'Baş məşqçi' },
     { name: 'Mələk Quliyeva', position: 'Məşqçi köməkçisi' },
-    { name: 'Ibrahim Qələndərli', position: 'Məşqçi' },
-    { name: 'Amil Əlizadə', position: 'Məşqçi' },
+    { name: 'Ibrahim Qələndərli', position: 'Məşqçi köməkçisi' },
+    { name: 'Amil Əlizadə', position: 'Məşqçi köməkçisi' },
   ];
 
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
