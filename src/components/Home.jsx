@@ -3,10 +3,6 @@ import { Link } from 'react-router';
 import { Trophy, Users, Calendar, X, ZoomIn } from 'lucide-react';
 import logo from '/src/assets/logo.png'; 
 
-// Импортируем фотографии напрямую
-import teamPhoto from './assets/team-photo.jpeg'; 
-import gymPhoto from './assets/gym.jpg'; 
-
 export default function Home() {
   const [activeImage, setActiveImage] = useState(null);
 
@@ -42,7 +38,7 @@ export default function Home() {
       title: 'Masazırla görüşdə qələbə',
       description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
       videoUrl: null,
-      image: teamPhoto,
+      image: '/team-photo.jpeg', // Из папки public/
       isClickableImage: true
     },
     {
@@ -50,7 +46,7 @@ export default function Home() {
       title: 'Yeni idman zalımız',
       description: 'Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.',
       videoUrl: null,
-      image: gymPhoto,
+      image: '/gym.jpg', // Из папки public/
       isClickableImage: true
     },
   ];
