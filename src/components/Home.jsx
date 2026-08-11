@@ -38,7 +38,7 @@ export default function Home() {
       title: 'Masazırla görüşdə qələbə',
       description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
       videoUrl: null,
-      image: '/team-photo.jpeg', // Из папки public/
+      image: '/team-photo.jpeg', // Прямой путь из папки public/
       isClickableImage: true
     },
     {
@@ -46,7 +46,7 @@ export default function Home() {
       title: 'Yeni idman zalımız',
       description: 'Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.',
       videoUrl: null,
-      image: '/gym.jpg', // Из папки public/
+      image: '/gym.jpg', // Прямой путь из папки public/
       isClickableImage: true
     },
   ];
