@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 // 🖼️ Используем логотип logo.png
 import logo from '../assets/logo.png'; 
@@ -8,22 +8,6 @@ import logo from '../assets/logo.png';
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-
-  // 🌙 Инициализация темы из localStorage или по умолчанию (light)
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'light';
-  });
-
-  // 🚀 Переключение темы и сохранение в localStorage + установка класса на root
-  const toggleTheme = () => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme);
-    localStorage.setItem('theme', nextTheme);
-  };
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
 
   // 🚀 Автоматический скролл наверх при смене страницы
   useEffect(() => {
@@ -45,26 +29,21 @@ export default function Layout() {
     return location.pathname.startsWith(path);
   };
 
-  const isDark = theme === 'dark';
-
   const styles = {
     layoutWrapper: {
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: isDark ? '#0f172a' : '#f9fafb',
-      color: isDark ? '#f8fafc' : '#1e293b',
+      backgroundColor: '#f9fafb',
       fontFamily: 'system-ui, -apple-system, sans-serif',
-      overflowX: 'hidden',
-      transition: 'background-color 0.3s ease, color 0.3s ease'
+      overflowX: 'hidden'
     },
     header: {
-      backgroundColor: isDark ? '#1e293b' : '#ffffff',
-      boxShadow: isDark ? '0 2px 8px rgba(0, 0, 0, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.06)',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
       position: 'sticky',
       top: 0,
-      zIndex: 50,
-      transition: 'background-color 0.3s ease'
+      zIndex: 50
     },
     navContainer: {
       maxWidth: '1152px',
@@ -96,7 +75,7 @@ export default function Layout() {
     },
     logoSubtitle: {
       fontSize: '0.75rem',
-      color: isDark ? '#94a3b8' : '#4b5563',
+      color: '#4b5563',
       marginTop: '2px'
     },
     desktopNav: {
@@ -106,15 +85,12 @@ export default function Layout() {
     },
     navLink: (linkPath) => {
       const isReg = linkPath === '/register';
-      const activeColor = '#3E6DB5';
-      const defaultColor = isDark ? '#cbd5e1' : '#374151';
-
       return {
         textDecoration: 'none',
         fontSize: '0.95rem',
         fontWeight: '600',
         transition: 'all 0.2s ease',
-        color: isReg ? '#ffffff' : (isActive(linkPath) ? activeColor : defaultColor),
+        color: isReg ? '#ffffff' : (isActive(linkPath) ? '#3E6DB5' : '#374151'),
         backgroundColor: isReg ? '#3E6DB5' : 'transparent',
         padding: isReg ? '10px 20px' : '8px 12px',
         borderRadius: isReg ? '8px' : '6px',
@@ -123,26 +99,12 @@ export default function Layout() {
         boxSizing: 'border-box'
       };
     },
-    themeBtn: {
-      background: 'none',
-      border: 'none',
-      cursor: 'pointer',
-      padding: '8px',
-      borderRadius: '50%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: isDark ? '#fbbf24' : '#475569',
-      backgroundColor: isDark ? 'rgba(251, 191, 36, 0.1)' : '#f1f5f9',
-      transition: 'all 0.2s ease',
-      WebkitTapHighlightColor: 'transparent'
-    },
     mobileMenuBtn: {
       background: 'none',
       border: 'none',
       padding: '8px',
       cursor: 'pointer',
-      color: isDark ? '#f8fafc' : '#374151',
+      color: '#374151',
       borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
@@ -152,7 +114,7 @@ export default function Layout() {
     mobileNav: {
       marginTop: '12px',
       paddingBottom: '16px',
-      borderTop: `1px solid ${isDark ? '#334155' : '#f3f4f6'}`,
+      borderTop: '1px solid #f3f4f6',
       paddingTop: '12px'
     },
     mobileNavFlex: {
@@ -224,7 +186,7 @@ export default function Layout() {
             display: flex;
             flex-direction: column;
             gap: 32px;
-            text-align: left;
+            text-align: left; /* Ровное выравнивание по левому краю для мобильных */
             align-items: flex-start;
           }
           .footer-col {
@@ -273,37 +235,17 @@ export default function Layout() {
                   {link.label}
                 </Link>
               ))}
-
-              {/* Кнопка смены темы (Desktop) */}
-              <button
-                onClick={toggleTheme}
-                style={styles.themeBtn}
-                title={isDark ? "Açıq rejim" : "Tünd rejim"}
-                aria-label="Переключить тему"
-              >
-                {isDark ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
             </div>
 
-            {/* Mobile Controls (Theme Toggle + Menu) */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="mobile-only">
-              <button
-                onClick={toggleTheme}
-                style={styles.themeBtn}
-                title={isDark ? "Açıq rejim" : "Tünd rejim"}
-                aria-label="Переключить тему"
-              >
-                {isDark ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                style={styles.mobileMenuBtn}
-                aria-label="Müəyyən et"
-              >
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
-            </div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              style={styles.mobileMenuBtn}
+              className="mobile-only"
+              aria-label="Меню"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
 
           {/* Mobile Navigation */}
