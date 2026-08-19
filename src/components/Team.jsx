@@ -19,7 +19,7 @@ export default function Team() {
       number: '4',
       name: 'Ülvi Əsgərov',
       position: 'Yüngül Hücumçu',
-      height: '175 sm',
+      height: '190 sm',
     },
     {
       number: '01',
@@ -50,6 +50,12 @@ export default function Team() {
       name: 'Rustəmov Ibrahim',
       position: 'Hücumçu',
       height: '196 sm',
+    },
+    {
+      number: '28',
+      name: 'Omer Nəsib',
+      position: 'Hücumçu',
+      height: '180 sm',
     },
   ];
 
