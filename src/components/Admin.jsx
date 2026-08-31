@@ -19,9 +19,15 @@ export default function Admin() {
     fetchVisits();
   }, []);
 
-  const fetchVisits = () => {
-    const totalVisits = localStorage.getItem('site_total_views') || 0;
-    setVisitCount(Number(totalVisits));
+  // 🚀 Получение реального количества просмотров из CountAPI
+  const fetchVisits = async () => {
+    try {
+      const response = await fetch('https://api.countapi.xyz/get/absheron-ik-site/visits');
+      const data = await response.json();
+      setVisitCount(data.value || 0);
+    } catch (error) {
+      console.error('Счетчик недоступен:', error);
+    }
   };
 
   const handleLogin = (e) => {
