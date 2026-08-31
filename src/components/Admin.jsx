@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Trash2, RefreshCw, User, Phone, MapPin, Building, Ruler, Weight, Lock, Users } from 'lucide-react';
+import { Trash2, RefreshCw, User, Phone, MapPin, Building, Ruler, Weight, Lock, Users, Eye } from 'lucide-react';
 
 const ADMIN_PASSWORD = "absheron2026"; 
 
@@ -8,6 +8,7 @@ export default function Admin() {
   const [passwordInput, setPasswordInput] = useState('');
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [visitCount, setVisitCount] = useState(0);
 
   useEffect(() => {
     const savedAuth = localStorage.getItem('admin_authenticated');
@@ -15,7 +16,13 @@ export default function Admin() {
       setIsAuthenticated(true);
       fetchStudents();
     }
+    fetchVisits();
   }, []);
+
+  const fetchVisits = () => {
+    const totalVisits = localStorage.getItem('site_total_views') || 0;
+    setVisitCount(Number(totalVisits));
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,7 +31,7 @@ export default function Admin() {
       localStorage.setItem('admin_authenticated', 'true');
       fetchStudents();
     } else {
-      alert('Шифр сехвдир! (Неверный пароль)');
+      alert('Şifrə səhvdir! (Неверный пароль)');
     }
   };
 
@@ -158,9 +165,26 @@ export default function Admin() {
           Məşqçi Paneli ({students.length})
         </h2>
         
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          {/* Виджет счетчика просмотров */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            backgroundColor: '#f1f5f9',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            border: '1px solid #cbd5e1',
+            fontSize: '0.85rem',
+            fontWeight: '600',
+            color: '#0f172a'
+          }}>
+            <Eye size={16} color="#0284c7" />
+            <span>Baxışlar: {visitCount}</span>
+          </div>
+
           <button 
-            onClick={fetchStudents} 
+            onClick={() => { fetchStudents(); fetchVisits(); }} 
             style={{
               padding: '8px 14px',
               borderRadius: '8px',
@@ -201,7 +225,6 @@ export default function Admin() {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {students.map((s) => {
-            // Универсальное считывание с учетом любых возможных названий полей в Java/JSON:
             const sClass = s.studentClass || s.class || s.sinif;
             const sHeight = s.height || s.boy;
             const sWeight = s.weight || s.ceki;
@@ -227,7 +250,6 @@ export default function Admin() {
                   padding: '16px',
                   boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
                 }}>
-                {/* Заголовок карточки с именем и кнопкой */}
                 <div style={{ 
                   display: 'flex', 
                   justifyContent: 'space-between', 
@@ -267,7 +289,6 @@ export default function Admin() {
                   </button>
                 </div>
 
-                {/* Основная информация ученика */}
                 <div style={{ 
                   display: 'grid', 
                   gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
@@ -283,7 +304,6 @@ export default function Admin() {
                   {sPhone && <div><Phone size={15} style={{ verticalAlign: 'middle', marginRight: '6px', color: '#0284c7' }} /><b>Tel:</b> {sPhone}</div>}
                 </div>
 
-                {/* Данные родителей */}
                 <div style={{ 
                   backgroundColor: '#f8fafc', 
                   padding: '12px', 
@@ -297,14 +317,12 @@ export default function Admin() {
                   </div>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>
-                    {/* АТА */}
                     <div style={{ backgroundColor: '#ffffff', padding: '8px 10px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
                       <b style={{ color: '#0f172a' }}>Ata:</b> {fName || '—'}
                       <div style={{ marginTop: '4px' }}><b>Tel:</b> {fPhone || '—'}</div>
                       {fHeight && <div style={{ marginTop: '2px' }}><b>Boy:</b> {fHeight} sm</div>}
                     </div>
 
-                    {/* АНА */}
                     <div style={{ backgroundColor: '#ffffff', padding: '8px 10px', borderRadius: '6px', border: '1px solid #cbd5e1' }}>
                       <b style={{ color: '#0f172a' }}>Ana:</b> {mName || '—'}
                       <div style={{ marginTop: '4px' }}><b>Tel:</b> {mPhone || '—'}</div>
