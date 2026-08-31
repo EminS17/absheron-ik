@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Trash2, RefreshCw, User, Phone, MapPin, Building, Ruler, Weight, Lock, Users, Eye } from 'lucide-react';
+import { Trash2, RefreshCw, User, Phone, MapPin, Building, Ruler, Weight, Lock, Users } from 'lucide-react';
 
 const ADMIN_PASSWORD = "absheron2026"; 
 
@@ -8,7 +8,6 @@ export default function Admin() {
   const [passwordInput, setPasswordInput] = useState('');
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [visitCount, setVisitCount] = useState(0);
 
   useEffect(() => {
     const savedAuth = localStorage.getItem('admin_authenticated');
@@ -16,19 +15,7 @@ export default function Admin() {
       setIsAuthenticated(true);
       fetchStudents();
     }
-    fetchVisits();
   }, []);
-
-  // 🚀 Получение реального количества просмотров из CounterAPI.dev
-  const fetchVisits = async () => {
-    try {
-      const response = await fetch('https://counterapi.dev/api/absheron-ik-site/v1/visits');
-      const data = await response.json();
-      setVisitCount(data.count || 0);
-    } catch (error) {
-      console.error('Счетчик недоступен:', error);
-    }
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -171,26 +158,9 @@ export default function Admin() {
           Məşqçi Paneli ({students.length})
         </h2>
         
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          {/* Виджет счетчика просмотров */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            backgroundColor: '#f1f5f9',
-            padding: '8px 12px',
-            borderRadius: '8px',
-            border: '1px solid #cbd5e1',
-            fontSize: '0.85rem',
-            fontWeight: '600',
-            color: '#0f172a'
-          }}>
-            <Eye size={16} color="#0284c7" />
-            <span>Baxışlar: {visitCount}</span>
-          </div>
-
+        <div style={{ display: 'flex', gap: '8px' }}>
           <button 
-            onClick={() => { fetchStudents(); fetchVisits(); }} 
+            onClick={fetchStudents} 
             style={{
               padding: '8px 14px',
               borderRadius: '8px',

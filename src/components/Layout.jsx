@@ -8,13 +8,9 @@ export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  // 🚀 Автоматический скролл наверх + инкремент визита
+  // 🚀 Автоматический скролл наверх при смене страницы
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Фиксация визита через CounterAPI.dev
-    fetch('https://counterapi.dev/api/absheron-ik-site/v1/visits/up')
-      .catch(err => console.error('Ошибка записи визита:', err));
   }, [location.pathname]);
 
   const navLinks = [
