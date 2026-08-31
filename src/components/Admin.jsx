@@ -19,12 +19,12 @@ export default function Admin() {
     fetchVisits();
   }, []);
 
-  // 🚀 Получение реального количества просмотров из CountAPI
+  // 🚀 Получение реального количества просмотров из CounterAPI.dev
   const fetchVisits = async () => {
     try {
-      const response = await fetch('https://api.countapi.xyz/get/absheron-ik-site/visits');
+      const response = await fetch('https://counterapi.dev/api/absheron-ik-site/v1/visits');
       const data = await response.json();
-      setVisitCount(data.value || 0);
+      setVisitCount(data.count || 0);
     } catch (error) {
       console.error('Счетчик недоступен:', error);
     }

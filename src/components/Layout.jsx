@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-// 🖼️ Используем логотип logo.png
 import logo from '../assets/logo.png'; 
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  // 🚀 Автоматический скролл наверх + фиксирование визита
+  // 🚀 Автоматический скролл наверх + инкремент визита
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Счетчик реальных визитов
-    fetch('https://api.countapi.xyz/hit/absheron-ik-site/visits')
+    // Фиксация визита через CounterAPI.dev
+    fetch('https://counterapi.dev/api/absheron-ik-site/v1/visits/up')
       .catch(err => console.error('Ошибка записи визита:', err));
   }, [location.pathname]);
 
@@ -183,14 +182,13 @@ export default function Layout() {
   return (
     <div style={styles.layoutWrapper}>
       <style>{`
-        /* Оптимизация футера и меню под телефон */
         @media (max-width: 991px) {
           .desktop-only { display: none !important; }
           .footer-responsive-grid {
             display: flex;
             flex-direction: column;
             gap: 32px;
-            text-align: left; /* Ровное выравнивание по левому краю для мобильных */
+            text-align: left;
             align-items: flex-start;
           }
           .footer-col {
@@ -217,8 +215,6 @@ export default function Layout() {
       <header style={styles.header}>
         <nav style={styles.navContainer}>
           <div style={styles.navFlex}>
-            
-            {/* Logo + Название */}
             <Link to="/" style={styles.logoLink}>
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logoImg} />
               <div>
@@ -227,7 +223,6 @@ export default function Layout() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
             <div style={styles.desktopNav} className="desktop-only">
               {navLinks.map((link) => (
                 <Link
@@ -241,7 +236,6 @@ export default function Layout() {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               style={styles.mobileMenuBtn}
@@ -252,7 +246,6 @@ export default function Layout() {
             </button>
           </div>
 
-          {/* Mobile Navigation */}
           {isMenuOpen && (
             <div style={styles.mobileNav}>
               <div style={styles.mobileNavFlex}>
@@ -284,7 +277,6 @@ export default function Layout() {
       <footer style={styles.footer}>
         <div style={styles.footerContainer}>
           <div className="footer-responsive-grid">
-            
             <div className="footer-col">
               <Link to="/">
                 <img src={logo} alt="ABŞERONİK Logo" style={styles.footerLogo} />
@@ -315,7 +307,6 @@ export default function Layout() {
                 <p style={{ ...styles.footerContactP, marginBottom: 0 }}>Ünvan: Xırdalan, AAAF Park yaxınlığı</p>
               </div>
             </div>
-
           </div>
 
           <div style={styles.copyright}>
