@@ -34,14 +34,14 @@ export default function Register() {
     e.preventDefault();
     setStatus({ loading: true, success: null, error: null });
 
-    // Маппинг данных под Java Entity (Student.java)
+    // Точный маппинг под поля Student.java
     const payload = {
       firstName: formData.student_name,
       lastName: formData.student_surname,
       height: formData.student_height ? parseFloat(formData.student_height) : null,
       weight: formData.student_weight ? parseFloat(formData.student_weight) : null,
       school: formData.school,
-      studentClass: formData.grade,
+      grade: formData.grade, // Исправлено: совпадает с полем в Student.java
       address: formData.address,
       studentPhone: formData.student_phone,
       fatherName: formData.father_name,
@@ -61,7 +61,7 @@ export default function Register() {
         body: JSON.stringify(payload)
       });
 
-      // ⛔ ПРОВЕРКА ОГРАНИЧЕНИЯ ЗАПРОСОВ (RATE LIMITING 429)
+      // Проверка Rate Limiting (429)
       if (response.status === 429) {
         setStatus({
           loading: false,
