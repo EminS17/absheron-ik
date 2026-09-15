@@ -1,33 +1,35 @@
 import React from 'react';
 import { Award, Target, Heart, TrendingUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import logo from '/src/assets/logo.png'; 
-import kitImage from '/src/assets/kit.jpg'; // Путь к изображению формы
+import kitImage from '/src/assets/kit.jpg';
 
 export default function About() {
+  const { t } = useTranslation();
+
   const values = [
     {
       icon: Award,
-      title: 'Peşəkarlıq',
-      description: 'Etdiyimiz hər şeydə ən yüksək standartlara can atırıq',
+      title: t('val_1_title'),
+      description: t('val_1_desc'),
     },
     {
       icon: Target,
-      title: 'Məqsədyönlülük',
-      description: 'Ambisiyalı məqsədlər qoyuruq və onlara nail oluruq',
+      title: t('val_2_title'),
+      description: t('val_2_desc'),
     },
     {
       icon: Heart,
-      title: 'Komanda ruhu',
-      description: 'Birlikdə daha güclüyük – əsas prinsipimiz budur',
+      title: t('val_3_title'),
+      description: t('val_3_desc'),
     },
     {
       icon: TrendingUp,
-      title: 'İnkişaf',
-      description: 'Davamlı təkmilləşir, regionda basketbol və futbolu inkişaf etdiririk',
+      title: t('val_4_title'),
+      description: t('val_4_desc'),
     },
   ];
 
-  // Объект со стилями
   const styles = {
     hero: {
       background: 'linear-gradient(135deg, #3E6DB5, #2C5294)',
@@ -91,8 +93,8 @@ export default function About() {
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.container}>
-          <h1 style={styles.heroTitle}>Klub haqqında</h1>
-          <p style={styles.heroText}>«ABŞERONİK» idman klubunun tarixi və dəyərləri</p>
+          <h1 style={styles.heroTitle}>{t('about_title')}</h1>
+          <p style={styles.heroText}>{t('about_subtitle')}</p>
         </div>
       </section>
 
@@ -104,22 +106,16 @@ export default function About() {
               <img src={logo} alt="ABŞERONİK Logo" style={styles.logo} />
             </div>
             <div>
-              <h2 style={styles.title}>Bizim tariximiz</h2>
+              <h2 style={styles.title}>{t('history_title')}</h2>
               <div style={styles.textBlock}>
                 <p style={styles.p}>
-                  «ABŞERONİK» idman klubu 2022-ci ildə Azərbaycanın Abşeron rayonunda 
-                  təsis edilib. Klubumuz ilk olaraq yalnız basketbol üzrə fəaliyyətə başlayaraq 
-                  regionda peşəkar basketbolu inkişaf etdirməyi qarşısına məqsəd qoymuşdu.
+                  {t('history_p1')}
                 </p>
                 <p style={styles.p}>
-                  Qısa müddət ərzində klubumuz ölkə yarışlarında dinamik və baxımlı oyun 
-                  nümayiş etdirərək ən güclü komandalar arasında yer almağı bacardı. Biz komandamızla 
-                  fəxr edir və oyun keyfiyyətini daha da yüksəltmək üçün davamlı olaraq çalışırıq.
+                  {t('history_p2')}
                 </p>
                 <p style={{ ...styles.p, marginBottom: 0 }}>
-                  Bu ildən etibarən isə klubumuz daha da böyüyərək futbol fəaliyyətinə də start verdi – artıq 
-                  klubumuzda futbol məşqləri də keçirilir! «ABŞERONİK» – yalnız bir idman klubu deyil, 
-                  bu həm də Azərbaycanda idmanın inkişaf mərkəzidir və burada gələcəyin ulduzları yetişdirilir.
+                  {t('history_p3')}
                 </p>
               </div>
             </div>
@@ -130,7 +126,7 @@ export default function About() {
       {/* Values Section */}
       <section style={styles.sectionGray}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.title, textAlign: 'center', marginBottom: '48px' }}>Bizim dəyərlərimiz</h2>
+          <h2 style={{ ...styles.title, textAlign: 'center', marginBottom: '48px' }}>{t('values_title')}</h2>
           <div style={styles.grid4}>
             {values.map((value, index) => (
               <div key={index} style={styles.card}>
@@ -148,9 +144,9 @@ export default function About() {
       {/* Club Kit Section */}
       <section style={styles.sectionWhite}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.title, textAlign: 'center', marginBottom: '32px' }}>Klubumuzun forması</h2>
+          <h2 style={{ ...styles.title, textAlign: 'center', marginBottom: '32px' }}>{t('kit_title')}</h2>
           <div>
-            <img src={kitImage} alt="Klubumuzun forması" style={styles.kitLogo} />
+            <img src={kitImage} alt={t('kit_title')} style={styles.kitLogo} />
           </div>
         </div>
       </section>
@@ -158,12 +154,9 @@ export default function About() {
       {/* Mission Section */}
       <section style={styles.sectionBlue}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.heroTitle, color: '#ffffff' }}>Bizim missiyamız</h2>
+          <h2 style={{ ...styles.heroTitle, color: '#ffffff' }}>{t('mission_title')}</h2>
           <p style={styles.missionText}>
-            Azərbaycanda basketbol və futbolu inkişaf etdirmək, istedadlı idmançılar 
-            yetişdirmək və azarkeşlərə baxımlı, peşəkar oyunla qələbə sevinci 
-            bəxş etməkdir. Biz gənc nəsil üçün örnək olmağa və gəncləri idmanla 
-            məşğul olmağa ruhlandırmağa çalışırıq.
+            {t('mission_text')}
           </p>
         </div>
       </section>

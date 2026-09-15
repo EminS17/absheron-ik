@@ -30,5 +30,24 @@
   "cta_title": "Watch Our Games",
   "cta_desc": "Support our team from the arena during basketball and football matches and watch exciting away games live.",
   "cta_btn": "Contact Us",
-  "close": "Close"
+  "close": "Close",
+
+  "about_title": "About Club",
+  "about_subtitle": "History and values of «ABŞERONİK» sports club",
+  "history_title": "Our History",
+  "history_p1": "«ABŞERONİK» sports club was founded in 2022 in the Absheron region of Azerbaijan. Initially, our club started with basketball only, aiming to develop professional basketball in the region.",
+  "history_p2": "In a short period of time, our club managed to take a place among the strongest teams in national competitions by displaying a dynamic and spectactular game. We are proud of our team and continuously work to improve the quality of play.",
+  "history_p3": "Starting this year, our club has expanded to launch football activities as well — football training sessions are now taking place in our club! «ABŞERONİK» is not just a sports club, it is a sports development center in Azerbaijan where future stars are raised.",
+  "values_title": "Our Values",
+  "val_1_title": "Professionalism",
+  "val_1_desc": "We strive for the highest standards in everything we do",
+  "val_2_title": "Purposefulness",
+  "val_2_desc": "We set ambitious goals and achieve them",
+  "val_3_title": "Team Spirit",
+  "val_3_desc": "Together we are stronger – this is our core principle",
+  "val_4_title": "Development",
+  "val_4_desc": "We continuously improve and develop basketball and football in the region",
+  "kit_title": "Our Club Kit",
+  "mission_title": "Our Mission",
+  "mission_text": "To develop basketball and football in Azerbaijan, nurture talented athletes, and bring the joy of victory to fans through exciting professional play. We strive to set an example for the young generation and inspire youth to engage in sports."
 }
