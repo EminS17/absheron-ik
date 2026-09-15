@@ -1,52 +1,54 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Trophy, Users, Calendar, X, ZoomIn } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import logo from '../assets/logo.png'; 
 
 export default function Home() {
   const [activeImage, setActiveImage] = useState(null);
+  const { t } = useTranslation();
 
   const features = [
     {
       icon: Trophy,
-      title: 'Peşəkarlıq',
-      description: 'Basketbol və futbol üzrə yüksək oyun səviyyəsi və milli turnirlərdə nailiyyətlər',
+      title: t('feat_1_title'),
+      description: t('feat_1_desc'),
     },
     {
       icon: Users,
-      title: 'Komanda',
-      description: 'Təcrübəli idmançılar, futbolçular, basketbolçular və peşəkar məşqçi heyəti',
+      title: t('feat_2_title'),
+      description: t('feat_2_desc'),
     },
     {
       icon: Calendar,
-      title: 'Müntəzəm oyunlar',
-      description: 'Çempionatlarda, liqalarda və turnirlərdə davamlı iştirak',
+      title: t('feat_3_title'),
+      description: t('feat_3_desc'),
     },
   ];
 
   const news = [
     {
       id: 1,
-      title: 'Xəzər TV kanalında çıxışımız',
-      description: 'Klubumuzun Xəzər TV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.',
+      title: t('news_1_title'),
+      description: t('news_1_desc'),
       videoUrl: 'https://www.youtube.com/watch?v=cnHeLAYzSR0',
       image: 'https://img.youtube.com/vi/cnHeLAYzSR0/hqdefault.jpg',
       isClickableImage: false
     },
     {
       id: 2,
-      title: 'Masazırla görüşdə qələbə',
-      description: 'Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.',
+      title: t('news_2_title'),
+      description: t('news_2_desc'),
       videoUrl: null,
-      image: '/team-photo.jpeg', // Картинка из папки public/
+      image: '/team-photo.jpeg',
       isClickableImage: true
     },
     {
       id: 3,
-      title: 'Yeni idman zalımız',
-      description: 'Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.',
+      title: t('news_3_title'),
+      description: t('news_3_desc'),
       videoUrl: null,
-      image: '/gym.jpg', // Картинка из папки public/
+      image: '/gym.jpg',
       isClickableImage: true
     },
   ];
@@ -234,14 +236,13 @@ export default function Home() {
             </div>
             <div className="hero-text-box">
               <h1 style={styles.heroTitle}>ABŞERONİK</h1>
-              <p style={styles.heroSubtitle}>Abşeron İdman Klubu</p>
+              <p style={styles.heroSubtitle}>{t('hero_subtitle')}</p>
               <p style={styles.heroText}>
-                Azərbaycanın peşəkar basketbol və futbol klubu. Qələbəyə doğru addımlamaq, 
-                komanda ruhu və unudulmaz oyun nümayiş etdirmək bizim əsas hədəfimizdir.
+                {t('hero_text')}
               </p>
               <div style={styles.btnContainer} className="hero-btn-container">
-                <Link to="/about" style={styles.btnWhite}>Klub haqqında</Link>
-                <Link to="/team" style={styles.btnOutline}>Komanda</Link>
+                <Link to="/about" style={styles.btnWhite}>{t('btn_about')}</Link>
+                <Link to="/team" style={styles.btnOutline}>{t('btn_team')}</Link>
               </div>
             </div>
           </div>
@@ -251,7 +252,7 @@ export default function Home() {
       {/* Features Section */}
       <section style={styles.sectionWhite}>
         <div style={styles.container}>
-          <h2 style={styles.sectionTitle}>Niyə ABŞERONİK?</h2>
+          <h2 style={styles.sectionTitle}>{t('why_title')}</h2>
           <div style={styles.grid3}>
             {features.map((feature, index) => (
               <div key={index} style={styles.featureCard}>
@@ -269,7 +270,7 @@ export default function Home() {
       {/* News Section */}
       <section style={styles.sectionGray}>
         <div style={styles.container}>
-          <h2 style={styles.sectionTitle}>Son Xəbərlər</h2>
+          <h2 style={styles.sectionTitle}>{t('news_title')}</h2>
           <div style={styles.grid3}>
             {news.map((item) => (
               <div key={item.id} style={styles.newsCard}>
@@ -307,7 +308,7 @@ export default function Home() {
                         fontSize: '0.95rem'
                       }}
                     >
-                      Videonu izlə →
+                      {t('watch_video')}
                     </a>
                   )}
                 </div>
@@ -320,12 +321,12 @@ export default function Home() {
       {/* CTA Section */}
       <section style={styles.sectionBlue}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.sectionTitle, color: '#ffffff', marginBottom: '24px' }}>Oyunlarımızı izləyin</h2>
+          <h2 style={{ ...styles.sectionTitle, color: '#ffffff', marginBottom: '24px' }}>{t('cta_title')}</h2>
           <p style={styles.ctaText}>
-            Basketbol və futbol matçlarımızda komandamızı arenadan dəstəkləyin və maraqlı səfər qarşıdurmalarını canlı izləyin.
+            {t('cta_desc')}
           </p>
           <Link to="/contact" style={{ ...styles.btnWhite, display: 'inline-block', flex: 'none' }}>
-            Bizimlə əlaqə
+            {t('cta_btn')}
           </Link>
         </div>
       </section>
@@ -335,7 +336,7 @@ export default function Home() {
         <div style={styles.modalOverlay} onClick={() => setActiveImage(null)}>
           <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button style={styles.closeButton} onClick={() => setActiveImage(null)}>
-              <X size={24} /> Bağla
+              <X size={24} /> {t('close')}
             </button>
             <img src={activeImage} alt="Böyüdülmüş şəkil" style={styles.modalImage} />
           </div>

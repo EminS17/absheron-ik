@@ -1,7 +1,34 @@
 {
-  "nav_home": "Ana səhifə",
-  "nav_about": "Haqqımızda",
+  "nav_home": "Ana Səhifə",
+  "nav_about": "Klub Haqqında",
   "nav_team": "Komanda",
   "nav_contact": "Əlaqə",
-  "nav_register": "Qeydiyyat"
+  "nav_register": "Qeydiyyat",
+
+  "hero_subtitle": "Abşeron İdman Klubu",
+  "hero_text": "Azərbaycanın peşəkar basketbol və futbol klubu. Qələbəyə doğru addımlamaq, komanda ruhu və unudulmaz oyun nümayiş etdirmək bizim əsas hədəfimizdir.",
+  "btn_about": "Klub haqqında",
+  "btn_team": "Komanda",
+
+  "why_title": "Niyə ABŞERONİK?",
+  "feat_1_title": "Peşəkarlıq",
+  "feat_1_desc": "Basketbol və futbol üzrə yüksək oyun səviyyəsi və milli turnirlərdə nailiyyətlər",
+  "feat_2_title": "Komanda",
+  "feat_2_desc": "Təcrübəli idmançılar, futbolçular, basketbolçular və peşəkar məşqçi heyəti",
+  "feat_3_title": "Müntəzəm oyunlar",
+  "feat_3_desc": "Çempionatlarda, liqalarda və turnirlərdə davamlı iştirak",
+
+  "news_title": "Son Xəbərlər",
+  "news_1_title": "Xəzər TV kanalında çıxışımız",
+  "news_1_desc": "Klubumuzun Xəzər TV televiziya kanalındakı süjeti və komandamız haqqında videoxülasə.",
+  "news_2_title": "Masazırla görüşdə qələbə",
+  "news_2_desc": "Gərgin keçən oyunda komandamız Masazır kollektivini 84:76 hesabı ilə məğlub etdi.",
+  "news_3_title": "Yeni idman zalımız",
+  "news_3_desc": "Məşqlərimizin və ev oyunlarımızın keçiriləcəyi müasir və tam təchiz olunmuş yeni idman zalımız istifadəyə verildi.",
+  "watch_video": "Videonu izlə →",
+
+  "cta_title": "Oyunlarımızı izləyin",
+  "cta_desc": "Basketbol və futbol matçlarımızda komandamızı arenadan dəstəkləyin və maraqlı səfər qarşıdurmalarını canlı izləyin.",
+  "cta_btn": "Bizimlə əlaqə",
+  "close": "Bağla"
 }

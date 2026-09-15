@@ -3,5 +3,32 @@
   "nav_about": "About",
   "nav_team": "Team",
   "nav_contact": "Contact",
-  "nav_register": "Register"
+  "nav_register": "Register",
+
+  "hero_subtitle": "Absheron Sports Club",
+  "hero_text": "Azerbaijan's professional basketball and football club. Striving for victory, team spirit, and showing unforgettable gameplay is our main goal.",
+  "btn_about": "About Club",
+  "btn_team": "Team",
+
+  "why_title": "Why ABŞERONİK?",
+  "feat_1_title": "Professionalism",
+  "feat_1_desc": "High performance level in basketball and football and achievements in national tournaments",
+  "feat_2_title": "Team",
+  "feat_2_desc": "Experienced athletes, football players, basketball players, and a professional coaching staff",
+  "feat_3_title": "Regular Games",
+  "feat_3_desc": "Continuous participation in championships, leagues, and tournaments",
+
+  "news_title": "Latest News",
+  "news_1_title": "Our appearance on Xazar TV",
+  "news_1_desc": "A report about our club on Xazar TV channel and a video overview of our team.",
+  "news_2_title": "Victory against Masazir",
+  "news_2_desc": "In a tense match, our team defeated the Masazir squad with a score of 84:76.",
+  "news_3_title": "Our New Sports Hall",
+  "news_3_desc": "Our modern and fully equipped new sports hall for training and home games has been opened.",
+  "watch_video": "Watch video →",
+
+  "cta_title": "Watch Our Games",
+  "cta_desc": "Support our team from the arena during basketball and football matches and watch exciting away games live.",
+  "cta_btn": "Contact Us",
+  "close": "Close"
 }
