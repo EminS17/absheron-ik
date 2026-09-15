@@ -40,7 +40,8 @@ const InstagramIcon = ({ size = 26 }) => (
 
 export default function Contact() {
   const { t } = useTranslation();
-  const googleMapsUrl = "https://www.google.com/maps?q=40.457520,49.720314";
+  // Ссылка на Google Карты с поиском по Plus Code / Адресу 7 школы Хырдалана
+  const googleMapsUrl = "https://www.google.com/maps?q=FP69%2B4X6,+X%C4%B1rdalan+7+nomreli+mekteb";
 
   const [formData, setFormData] = useState({
     name: '',
@@ -399,8 +400,8 @@ export default function Contact() {
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
               <div style={styles.mapWrapper}>
                 <iframe
-                  title="Xırdalan Location"
-                  src="https://maps.google.com/maps?q=40.457520,49.720314&hl=az&z=16&output=embed"
+                  title="Xırdalan 7 nomreli mekteb Location"
+                  src="https://maps.google.com/maps?q=FP69%2B4X6,+X%C4%B1rdalan+7+nomreli+mekteb&hl=az&z=16&output=embed"
                   style={{ ...styles.iframe, pointerEvents: 'none' }}
                   allowFullScreen=""
                   loading="lazy"
