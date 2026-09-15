@@ -49,5 +49,21 @@
   "val_4_desc": "Davamlı təkmilləşir, regionda basketbol və futbolu inkişaf etdiririk",
   "kit_title": "Klubumuzun forması",
   "mission_title": "Bizim missiyamız",
-  "mission_text": "Azərbaycanda basketbol və futbolu inkişaf etdirmək, istedadlı idmançılar yetişdirmək və azarkeşlərə baxımlı, peşəkar oyunla qələbə sevinci bəxş etməkdir. Biz gənc nəsil üçün örnək olmağa və gəncləri idmanla məşğul olmağa ruhlandırmağa çalışırıq."
+  "mission_text": "Azərbaycanda basketbol və futbolu inkişaf etdirmək, istedadlı idmançılar yetişdirmək və azarkeşlərə baxımlı, peşəkar oyunla qələbə sevinci bəxş etməkdir. Biz gənc nəsil üçün örnək olmağa və gəncləri idmanla məşğul olmağa ruhlandırmağa çalışırıq.",
+
+  "team_hero_title": "Heyətimiz",
+  "team_hero_subtitle": "ABŞERONİK-in oyunçuları və heyəti ilə tanış olun",
+  "players_title": "Oyunçular",
+  "staff_title": "Personal",
+  "team_mission_title": "Bizim missiyamız",
+  "team_mission_text": "Biz həmişə istedadlı oyunçular və mütəxəssislər axtarırıq. Əlavə məlumat üçün bizimlə əlaqə saxlayın.",
+  "pos_point_guard": "Oyunqurucu",
+  "pos_shooting_guard": "Hücum Müdafiəçisi",
+  "pos_small_forward": "Yüngül Hücumçu",
+  "pos_forward": "Hücumçu",
+  "pos_center": "Mərkəz",
+  "pos_defender": "Müdafiəçi",
+  "pos_founder": "Klubun Təsisçisi",
+  "pos_head_coach": "Baş məşqçi",
+  "pos_assistant_coach": "Məşqçi köməkçisi"
 }

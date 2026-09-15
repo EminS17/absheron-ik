@@ -1,70 +1,73 @@
 import React, { useState } from 'react';
 import { UserCheck, ShieldCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Team() {
+  const { t } = useTranslation();
+
   const players = [
     {
       number: '1',
       name: 'Kamram Axundov',
-      position: 'Oyunqurucu',
+      position: t('pos_point_guard'),
       height: '185 sm',
     },
     {
       number: '27',
       name: 'Rüzgar Cəfərli',
-      position: 'Hücum Müdafiəçisi',
+      position: t('pos_shooting_guard'),
       height: '162 sm',
     },
     {
       number: '4',
       name: 'Ülvi Əsgərov',
-      position: 'Yüngül Hücumçu',
+      position: t('pos_small_forward'),
       height: '190 sm',
     },
     {
       number: '01',
       name: 'Həsənzadə Cavad',
-      position: 'Hücumçu',
+      position: t('pos_forward'),
       height: '170 sm',
     },
     {
       number: '17',
       name: 'Emin Sadiqli',
-      position: 'Mərkəz',
+      position: t('pos_center'),
       height: '170 sm',
     },
     {
       number: '8',
       name: 'Aysun Səmədova',
-      position: 'Oyunqurucu',
+      position: t('pos_point_guard'),
       height: '163 sm',
     },
     {
       number: '23',
       name: 'Ənəs Tahir',
-      position: 'Müdafiəçi',
+      position: t('pos_defender'),
       height: '170 sm',
     },
     {
       number: '34',
       name: 'Rustəmov Ibrahim',
-      position: 'Hücumçu',
+      position: t('pos_forward'),
       height: '196 sm',
     },
     {
       number: '28',
       name: 'Omer Nəsib',
-      position: 'Hücumçu',
+      position: t('pos_forward'),
       height: '180 sm',
     },
   ];
 
   const staff = [
-    { name: 'Nihad Mahmudzade', position: 'Klubun Təsisçisi', isOwner: true },
-    { name: 'MirHuseyin Heydərli', position: 'Baş məşqçi' },
-    { name: 'Mələk Quliyeva', position: 'Məşqçi köməkçisi' },
-    { name: 'Ibrahim Qələndərli', position: 'Məşqçi köməkçisi' },
-    { name: 'Amil Əlizadə', position: 'Məşqçi köməkçisi' },
+    { name: 'Nihad Mahmudzade', position: t('pos_founder'), isOwner: true },
+    { name: 'MirHuseyin Heydərli', position: t('pos_head_coach') },
+    { name: 'Mələk Quliyeva', position: t('pos_assistant_coach') },
+    { name: 'Ibrahim Qələndərli', position: t('pos_assistant_coach') },
+    { name: 'Amil Əlizadə', position: t('pos_assistant_coach') },
   ];
 
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
@@ -244,9 +247,9 @@ export default function Team() {
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.container}>
-          <h1 style={styles.heroTitle}>Heyətimiz</h1>
+          <h1 style={styles.heroTitle}>{t('team_hero_title')}</h1>
           <p style={styles.heroSubtitle}>
-            ABŞERONİK-in oyunçuları və heyəti ilə tanış olun
+            {t('team_hero_subtitle')}
           </p>
         </div>
       </section>
@@ -254,7 +257,7 @@ export default function Team() {
       {/* Players Section */}
       <section style={{ ...styles.section, ...styles.bgGray }}>
         <div style={styles.container}>
-          <h2 style={styles.sectionTitle}>Oyunçular</h2>
+          <h2 style={styles.sectionTitle}>{t('players_title')}</h2>
           <div style={styles.playersGrid}>
             {players.map((player, index) => (
               <div
@@ -281,7 +284,7 @@ export default function Team() {
       {/* Staff Section */}
       <section style={{ ...styles.section, ...styles.bgWhite }}>
         <div style={styles.container}>
-          <h2 style={styles.sectionTitle}>Personal</h2>
+          <h2 style={styles.sectionTitle}>{t('staff_title')}</h2>
           <div style={styles.staffGrid}>
             {staff.map((member, index) => (
               <div
@@ -305,10 +308,9 @@ export default function Team() {
       {/* Join Section */}
       <section style={styles.joinSection}>
         <div style={styles.container}>
-          <h2 style={styles.joinTitle}>Bizim missiamız</h2>
+          <h2 style={styles.joinTitle}>{t('team_mission_title')}</h2>
           <p style={styles.joinText}>
-            Biz həmişə istedadlı oyunçular və mütəxəssislər axtarırıq.
-            Əlavə məlumat üçün bizimlə əlaqə saxlayın.
+            {t('team_mission_text')}
           </p>
         </div>
       </section>

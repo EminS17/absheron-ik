@@ -49,5 +49,21 @@
   "val_4_desc": "We continuously improve and develop basketball and football in the region",
   "kit_title": "Our Club Kit",
   "mission_title": "Our Mission",
-  "mission_text": "To develop basketball and football in Azerbaijan, nurture talented athletes, and bring the joy of victory to fans through exciting professional play. We strive to set an example for the young generation and inspire youth to engage in sports."
+  "mission_text": "To develop basketball and football in Azerbaijan, nurture talented athletes, and bring the joy of victory to fans through exciting professional play. We strive to set an example for the young generation and inspire youth to engage in sports.",
+
+  "team_hero_title": "Our Team",
+  "team_hero_subtitle": "Meet the players and staff of ABŞERONİK",
+  "players_title": "Players",
+  "staff_title": "Staff",
+  "team_mission_title": "Our Mission",
+  "team_mission_text": "We are always looking for talented players and specialists. Contact us for more information.",
+  "pos_point_guard": "Point Guard",
+  "pos_shooting_guard": "Shooting Guard",
+  "pos_small_forward": "Small Forward",
+  "pos_forward": "Forward",
+  "pos_center": "Center",
+  "pos_defender": "Defender",
+  "pos_founder": "Club Founder",
+  "pos_head_coach": "Head Coach",
+  "pos_assistant_coach": "Assistant Coach"
 }
