@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { useTranslation } from 'react-i18next';
 
-// Встроенная SVG-иконка WhatsApp
 const WhatsappIcon = ({ size = 26 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,6 @@ const WhatsappIcon = ({ size = 26 }) => (
   </svg>
 );
 
-// Встроенная SVG-иконка Instagram
 const InstagramIcon = ({ size = 26 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +39,7 @@ const InstagramIcon = ({ size = 26 }) => (
 );
 
 export default function Contact() {
+  const { t } = useTranslation();
   const googleMapsUrl = "https://www.google.com/maps?q=40.457520,49.720314";
 
   const [formData, setFormData] = useState({
@@ -71,13 +71,13 @@ export default function Contact() {
 
     const SERVICE_ID = 'service_8pv0pla'; 
     const TEMPLATE_ID = 'template_fun69e5'; 
-    const PUBLIC_KEY = 'Zy9yFKgBZ1l85qFKX';  
+    const PUBLIC_KEY = 'Zy9yFKgBZ1l85qFKX';   
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY)
       .then(() => {
         setStatus({
           loading: false,
-          success: 'Mesajınız uğurla göndərildi!',
+          success: t('msg_success'),
           error: null
         });
         setFormData({ name: '', surname: '', email: '', phone: '', subject: '', message: '' });
@@ -87,7 +87,7 @@ export default function Contact() {
         setStatus({
           loading: false,
           success: null,
-          error: 'Xəta baş verdi. Yenidən cəhd edin.'
+          error: t('msg_error')
         });
       });
   };
@@ -194,8 +194,8 @@ export default function Contact() {
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.container}>
-          <h1 style={styles.heroTitle}>Əlaqə</h1>
-          <p style={styles.heroText}>Ətraflı məlumat almaq üçün bizimlə əlaqə saxlayın</p>
+          <h1 style={styles.heroTitle}>{t('contact_hero_title')}</h1>
+          <p style={styles.heroText}>{t('contact_hero_subtitle')}</p>
         </div>
       </section>
 
@@ -209,7 +209,7 @@ export default function Contact() {
               <div style={styles.iconWrapper}>
                 <Mail color="#ffffff" size={26} />
               </div>
-              <h3 style={styles.cardTitle}>Email</h3>
+              <h3 style={styles.cardTitle}>{t('card_email')}</h3>
               <a href="mailto:absheronik@gmail.com" style={styles.cardLink}>
                 absheronik@gmail.com
               </a>
@@ -220,7 +220,7 @@ export default function Contact() {
               <div style={styles.iconWrapper}>
                 <Phone color="#ffffff" size={26} />
               </div>
-              <h3 style={styles.cardTitle}>Telefon</h3>
+              <h3 style={styles.cardTitle}>{t('card_phone')}</h3>
               <a href="tel:+994517425151" style={{ ...styles.cardLink, marginBottom: '4px' }}>
                 +994 51 742 51 51
               </a>
@@ -234,14 +234,14 @@ export default function Contact() {
               <div style={styles.iconWrapper}>
                 <MapPin color="#ffffff" size={26} />
               </div>
-              <h3 style={styles.cardTitle}>Ünvan</h3>
+              <h3 style={styles.cardTitle}>{t('card_address')}</h3>
               <a 
                 href={googleMapsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 style={{ ...styles.cardLink, color: '#3E6DB5', fontWeight: '500' }}
               >
-                Xırdalan şəhəri, AAAF Park yaxınlığı
+                {t('address_value')}
               </a>
             </div>
 
@@ -253,8 +253,8 @@ export default function Contact() {
       <section style={styles.sectionGray}>
         <div style={styles.container}>
           <div style={styles.formWrapper}>
-            <h2 style={styles.formTitle}>Bizə mesaj göndərin</h2>
-            <p style={styles.formSubtitle}>Aşağıdakı formanı doldurun, biz tezliklə sizinlə əlaqə saxlayacağıq</p>
+            <h2 style={styles.formTitle}>{t('send_msg_title')}</h2>
+            <p style={styles.formSubtitle}>{t('send_msg_subtitle')}</p>
             
             <form style={styles.form} onSubmit={sendEmail}>
               
@@ -271,26 +271,26 @@ export default function Contact() {
 
               <div style={styles.grid2}>
                 <div>
-                  <label style={styles.label}>Ad</label>
+                  <label style={styles.label}>{t('form_name')}</label>
                   <input 
                     type="text" 
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     style={styles.input} 
-                    placeholder="Adınız" 
+                    placeholder={t('ph_name')} 
                     required 
                   />
                 </div>
                 <div>
-                  <label style={styles.label}>Soyad</label>
+                  <label style={styles.label}>{t('form_surname')}</label>
                   <input 
                     type="text" 
                     name="surname"
                     value={formData.surname}
                     onChange={handleChange}
                     style={styles.input} 
-                    placeholder="Soyadınız" 
+                    placeholder={t('ph_surname')} 
                     required 
                   />
                 </div>
@@ -298,59 +298,59 @@ export default function Contact() {
               
               <div style={styles.grid2}>
                 <div>
-                  <label style={styles.label}>Email</label>
+                  <label style={styles.label}>{t('form_email')}</label>
                   <input 
                     type="email" 
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     style={styles.input} 
-                    placeholder="your@email.com" 
+                    placeholder={t('ph_email')} 
                     required 
                   />
                 </div>
                 <div>
-                  <label style={styles.label}>Telefon</label>
+                  <label style={styles.label}>{t('form_phone')}</label>
                   <input 
                     type="tel" 
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     style={styles.input} 
-                    placeholder="+994 XX XXX XX XX" 
+                    placeholder={t('ph_phone')} 
                   />
                 </div>
               </div>
               
               <div style={styles.formGroup}>
-                <label style={styles.label}>Mövzu</label>
+                <label style={styles.label}>{t('form_subject')}</label>
                 <input 
                   type="text" 
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   style={styles.input} 
-                  placeholder="Mesajın mövzusu" 
+                  placeholder={t('ph_subject')} 
                   required 
                 />
               </div>
               
               <div style={styles.formGroup}>
-                <label style={styles.label}>Mesaj</label>
+                <label style={styles.label}>{t('form_message')}</label>
                 <textarea 
                   rows={5} 
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   style={{ ...styles.input, resize: 'none' }} 
-                  placeholder="Mesajınız..." 
+                  placeholder={t('ph_message')} 
                   required
                 ></textarea>
               </div>
               
               <button type="submit" style={styles.button} disabled={status.loading}>
                 <Send size={18} />
-                {status.loading ? 'Göndərilir...' : 'Mesajı göndər'}
+                {status.loading ? t('btn_sending') : t('btn_send')}
               </button>
             </form>
           </div>
@@ -360,11 +360,10 @@ export default function Contact() {
       {/* Social Media */}
       <section style={styles.sectionWhite}>
         <div style={{ ...styles.container, textAlign: 'center' }}>
-          <h2 style={{ ...styles.formTitle, marginBottom: '16px' }}>Sosial şəbəkələrdə bizi izləyin</h2>
-          <p style={{ ...styles.formSubtitle, marginBottom: '24px' }}>Klubun bütün xəbərləri, nəticələri və hadisələrindən xəbərdar olun</p>
+          <h2 style={{ ...styles.formTitle, marginBottom: '16px' }}>{t('social_title')}</h2>
+          <p style={{ ...styles.formSubtitle, marginBottom: '24px' }}>{t('social_subtitle')}</p>
           <div style={styles.socialContainer}>
             
-            {/* WhatsApp */}
             <a 
               href="https://wa.me/994517425151" 
               target="_blank" 
@@ -375,7 +374,6 @@ export default function Contact() {
               <WhatsappIcon size={26} />
             </a>
             
-            {/* Instagram */}
             <a 
               href="https://www.instagram.com/abseronik/" 
               target="_blank" 
@@ -386,7 +384,6 @@ export default function Contact() {
               <InstagramIcon size={26} />
             </a>
             
-            {/* Telegram / Send */}
             <a href="#" style={styles.socialCircle} title="Telegram">
               <Send size={26} />
             </a>
@@ -397,7 +394,7 @@ export default function Contact() {
       {/* Map Section */}
       <section style={styles.sectionGray}>
         <div style={styles.container}>
-          <h2 style={{ ...styles.formTitle, marginBottom: '32px' }}>Bizi necə tapmaq olar</h2>
+          <h2 style={{ ...styles.formTitle, marginBottom: '32px' }}>{t('map_title')}</h2>
           <div style={{ maxWidth: '1024px', margin: '0 auto' }}>
             <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
               <div style={styles.mapWrapper}>

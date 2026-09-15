@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { User, Phone, School, Award, Ruler, CheckCircle2, AlertCircle, ArrowRight, MapPin, Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Register() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     student_name: '',
     student_surname: '',
@@ -34,14 +37,13 @@ export default function Register() {
     e.preventDefault();
     setStatus({ loading: true, success: null, error: null });
 
-    // Точный маппинг под поля Student.java
     const payload = {
       firstName: formData.student_name,
       lastName: formData.student_surname,
       height: formData.student_height ? parseFloat(formData.student_height) : null,
       weight: formData.student_weight ? parseFloat(formData.student_weight) : null,
       school: formData.school,
-      grade: formData.grade, // Исправлено: совпадает с полем в Student.java
+      grade: formData.grade,
       address: formData.address,
       studentPhone: formData.student_phone,
       fatherName: formData.father_name,
@@ -61,12 +63,11 @@ export default function Register() {
         body: JSON.stringify(payload)
       });
 
-      // Проверка Rate Limiting (429)
       if (response.status === 429) {
         setStatus({
           loading: false,
           success: null,
-          error: 'Çoxlu sorğu göndərdiniz! Zəhmət olmasa 1 dəqiqə gözləyin.'
+          error: t('reg_rate_limit')
         });
         return;
       }
@@ -77,11 +78,10 @@ export default function Register() {
 
       setStatus({
         loading: false,
-        success: 'Qeydiyyat uğurla tamamlandı! Tələbənin məlumatları bazaya əlavə olundu.',
+        success: t('reg_success'),
         error: null
       });
 
-      // Очистка формы
       setFormData({
         student_name: '',
         student_surname: '',
@@ -104,7 +104,7 @@ export default function Register() {
       setStatus({
         loading: false,
         success: null,
-        error: 'Xəta baş verdi. Yenidən cəhd edin.'
+        error: t('msg_error')
       });
     }
   };
@@ -228,8 +228,8 @@ export default function Register() {
   return (
     <div style={styles.page}>
       <div style={styles.card}>
-        <h2 style={styles.title}>Tələbə Qeydiyyatı</h2>
-        <p style={styles.subtitle}>Klubumuza üzv olmaq üçün aşağıdakı xanaları doldurun</p>
+        <h2 style={styles.title}>{t('reg_title')}</h2>
+        <p style={styles.subtitle}>{t('reg_subtitle')}</p>
 
         {status.success && (
           <div style={{ ...styles.statusBox, backgroundColor: '#d1e7dd', color: '#0f5132' }}>
@@ -245,63 +245,63 @@ export default function Register() {
         <form onSubmit={handleRegister}>
           
           {/* Блок 1: Данные студента */}
-          <div style={{ ...styles.sectionTitle, marginTop: 0 }}>Tələbənin məlumatları</div>
+          <div style={{ ...styles.sectionTitle, marginTop: 0 }}>{t('reg_student_section')}</div>
           
           <div className="form-grid">
             <div style={styles.formGroup}>
-              <label style={styles.label}>Adı</label>
+              <label style={styles.label}>{t('reg_name')}</label>
               <div style={styles.inputWrapper}>
                 <User size={18} style={styles.icon} />
-                <input type="text" name="student_name" value={formData.student_name} onChange={handleChange} style={styles.input} placeholder="Tələbənin adı" required />
+                <input type="text" name="student_name" value={formData.student_name} onChange={handleChange} style={styles.input} placeholder={t('reg_name')} required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Soyadı</label>
+              <label style={styles.label}>{t('reg_surname')}</label>
               <div style={styles.inputWrapper}>
                 <User size={18} style={styles.icon} />
-                <input type="text" name="student_surname" value={formData.student_surname} onChange={handleChange} style={styles.input} placeholder="Tələbənin soyadı" required />
+                <input type="text" name="student_surname" value={formData.student_surname} onChange={handleChange} style={styles.input} placeholder={t('reg_surname')} required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Boyu (sm)</label>
+              <label style={styles.label}>{t('reg_height')}</label>
               <div style={styles.inputWrapper}>
                 <Ruler size={18} style={styles.icon} />
-                <input type="number" name="student_height" value={formData.student_height} onChange={handleChange} style={styles.input} placeholder="Məs: 165" required />
+                <input type="number" name="student_height" value={formData.student_height} onChange={handleChange} style={styles.input} placeholder="165" required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Çəkisi (kq)</label>
+              <label style={styles.label}>{t('reg_weight')}</label>
               <div style={styles.inputWrapper}>
                 <Award size={18} style={styles.icon} />
-                <input type="number" name="student_weight" value={formData.student_weight} onChange={handleChange} style={styles.input} placeholder="Məs: 55" required />
+                <input type="number" name="student_weight" value={formData.student_weight} onChange={handleChange} style={styles.input} placeholder="55" required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Təhsil aldığı məktəb</label>
+              <label style={styles.label}>{t('reg_school')}</label>
               <div style={styles.inputWrapper}>
                 <School size={18} style={styles.icon} />
-                <input type="text" name="school" value={formData.school} onChange={handleChange} style={styles.input} placeholder="Məs: 5 nömrəli məktəb" required />
+                <input type="text" name="school" value={formData.school} onChange={handleChange} style={styles.input} placeholder={t('reg_school')} required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Sinfi</label>
+              <label style={styles.label}>{t('reg_grade')}</label>
               <div style={styles.inputWrapper}>
                 <School size={18} style={styles.icon} />
-                <input type="text" name="grade" value={formData.grade} onChange={handleChange} style={styles.input} placeholder="Məs: 7B" required />
+                <input type="text" name="grade" value={formData.grade} onChange={handleChange} style={styles.input} placeholder="7B" required />
               </div>
             </div>
 
             {/* Адрес */}
             <div style={{ ...styles.formGroup, gridColumn: '1 / -1' }} className="full-width">
-              <label style={styles.label}>Ünvan (Yaşayış yeri)</label>
+              <label style={styles.label}>{t('reg_address')}</label>
               <div style={styles.inputWrapper}>
                 <MapPin size={18} style={styles.icon} />
-                <input type="text" name="address" value={formData.address} onChange={handleChange} style={styles.input} placeholder="Məs: Xırdalan şəhəri, H. Əliyev pr." required />
+                <input type="text" name="address" value={formData.address} onChange={handleChange} style={styles.input} placeholder={t('reg_address')} required />
               </div>
             </div>
 
             <div style={{ ...styles.formGroup, gridColumn: '1 / -1' }} className="full-width">
-              <label style={styles.label}>Tələbənin öz əlaqə nömrəsi <span style={{color: '#9fb3c8', fontWeight: 'normal'}}>(vacib deyil)</span></label>
+              <label style={styles.label}>{t('reg_student_phone')} <span style={{color: '#9fb3c8', fontWeight: 'normal'}}>{t('reg_optional')}</span></label>
               <div style={styles.inputWrapper}>
                 <Phone size={18} style={styles.icon} />
                 <input type="tel" name="student_phone" value={formData.student_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" />
@@ -310,46 +310,46 @@ export default function Register() {
           </div>
 
           {/* Блок 2: Данные родителей */}
-          <div style={styles.sectionTitle}>Valideynlərin məlumatları</div>
+          <div style={styles.sectionTitle}>{t('reg_parents_section')}</div>
           
           <div className="form-grid">
             <div style={styles.formGroup}>
-              <label style={styles.label}>Atasının adı</label>
+              <label style={styles.label}>{t('reg_father_name')}</label>
               <div style={styles.inputWrapper}>
                 <User size={18} style={styles.icon} />
-                <input type="text" name="father_name" value={formData.father_name} onChange={handleChange} style={styles.input} placeholder="Atasının adı" required />
+                <input type="text" name="father_name" value={formData.father_name} onChange={handleChange} style={styles.input} placeholder={t('reg_father_name')} required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Anasının adı</label>
+              <label style={styles.label}>{t('reg_mother_name')}</label>
               <div style={styles.inputWrapper}>
                 <User size={18} style={styles.icon} />
-                <input type="text" name="mother_name" value={formData.mother_name} onChange={handleChange} style={styles.input} placeholder="Anasının adı" required />
+                <input type="text" name="mother_name" value={formData.mother_name} onChange={handleChange} style={styles.input} placeholder={t('reg_mother_name')} required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Atasının boyu (sm)</label>
+              <label style={styles.label}>{t('reg_father_height')}</label>
               <div style={styles.inputWrapper}>
                 <Ruler size={18} style={styles.icon} />
-                <input type="number" name="father_height" value={formData.father_height} onChange={handleChange} style={styles.input} placeholder="Məs: 180" required />
+                <input type="number" name="father_height" value={formData.father_height} onChange={handleChange} style={styles.input} placeholder="180" required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Anasının boyu (sm)</label>
+              <label style={styles.label}>{t('reg_mother_height')}</label>
               <div style={styles.inputWrapper}>
                 <Ruler size={18} style={styles.icon} />
-                <input type="number" name="mother_height" value={formData.mother_height} onChange={handleChange} style={styles.input} placeholder="Məs: 168" required />
+                <input type="number" name="mother_height" value={formData.mother_height} onChange={handleChange} style={styles.input} placeholder="168" required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Atasının əlaqə nömrəsi</label>
+              <label style={styles.label}>{t('reg_father_phone')}</label>
               <div style={styles.inputWrapper}>
                 <Phone size={18} style={styles.icon} />
                 <input type="tel" name="father_phone" value={formData.father_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" required />
               </div>
             </div>
             <div style={styles.formGroup}>
-              <label style={styles.label}>Anasının əlaqə nömrəsi</label>
+              <label style={styles.label}>{t('reg_mother_phone')}</label>
               <div style={styles.inputWrapper}>
                 <Phone size={18} style={styles.icon} />
                 <input type="tel" name="mother_phone" value={formData.mother_phone} onChange={handleChange} style={styles.input} placeholder="+994 XX XXX XX XX" required />
@@ -358,15 +358,14 @@ export default function Register() {
           </div>
 
           <button type="submit" style={styles.button} disabled={status.loading}>
-            {status.loading ? 'Göndərilir...' : 'Qeydiyyatdan keçmək'}
+            {status.loading ? t('reg_btn_submitting') : t('reg_btn_submit')}
             <ArrowRight size={18} />
           </button>
 
-          {/* Текст уведомления о процессе отправки */}
           {status.loading && (
             <div style={styles.loadingNotice}>
               <Loader2 size={16} className="spin-icon" />
-              <span>Məlumatlar göndərilir, zəhmət olmasa 1 dəqiqə gözləyin...</span>
+              <span>{t('reg_loading_notice')}</span>
             </div>
           )}
         </form>
