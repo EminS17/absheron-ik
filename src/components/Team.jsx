@@ -62,12 +62,11 @@ export default function Team() {
     },
   ];
 
+  // Удалены Ibrahim Qələndərli и Amil Əlizadə
   const staff = [
     { name: 'Nihad Mahmudzade', position: t('pos_founder'), isOwner: true },
     { name: 'MirHuseyin Heydərli', position: t('pos_head_coach') },
     { name: 'Mələk Quliyeva', position: t('pos_assistant_coach') },
-    { name: 'Ibrahim Qələndərli', position: t('pos_assistant_coach') },
-    { name: 'Amil Əlizadə', position: t('pos_assistant_coach') },
   ];
 
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
