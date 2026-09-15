@@ -62,7 +62,7 @@ export default function Team() {
     },
   ];
 
-  // Удалены Ibrahim Qələndərli и Amil Əlizadə
+  // Здесь остались ТОЛЬКО Нихад, МирГусейн и Мелек
   const staff = [
     { name: 'Nihad Mahmudzade', position: t('pos_founder'), isOwner: true },
     { name: 'MirHuseyin Heydərli', position: t('pos_head_coach') },
