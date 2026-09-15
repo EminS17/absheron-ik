@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import logo from '../assets/logo.png'; 
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+
+  // Функция для смены языка
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   // 🚀 Автоматический скролл наверх при смене страницы
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // Динамические ссылки навигации через ключи i18n
   const navLinks = [
-    { path: '/', label: 'Ana Səhifə' },
-    { path: '/about', label: 'Klub Haqqında' },
-    { path: '/team', label: 'Komanda' },
-    { path: '/contact', label: 'Əlaqə' },
-    { path: '/register', label: 'Qeydiyyat' }, 
+    { path: '/', label: t('nav_home') },
+    { path: '/about', label: t('nav_about') },
+    { path: '/team', label: t('nav_team') },
+    { path: '/contact', label: t('nav_contact') },
+    { path: '/register', label: t('nav_register') }, 
   ];
 
   const isActive = (path) => {
@@ -98,6 +106,26 @@ export default function Layout() {
         boxSizing: 'border-box'
       };
     },
+    langSwitcher: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '4px',
+      marginLeft: '12px',
+      backgroundColor: '#f3f4f6',
+      padding: '4px',
+      borderRadius: '8px'
+    },
+    langBtn: (lng) => ({
+      border: 'none',
+      background: i18n.language === lng ? '#3E6DB5' : 'transparent',
+      color: i18n.language === lng ? '#ffffff' : '#374151',
+      fontWeight: 'bold',
+      fontSize: '0.75rem',
+      padding: '4px 8px',
+      borderRadius: '6px',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease'
+    }),
     mobileMenuBtn: {
       background: 'none',
       border: 'none',
@@ -219,6 +247,7 @@ export default function Layout() {
               </div>
             </Link>
 
+            {/* Desktop Navigation */}
             <div style={styles.desktopNav} className="desktop-only">
               {navLinks.map((link) => (
                 <Link
@@ -230,8 +259,16 @@ export default function Layout() {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Переключатель языков Desktop */}
+              <div style={styles.langSwitcher}>
+                <button style={styles.langBtn('az')} onClick={() => changeLanguage('az')}>AZ</button>
+                <button style={styles.langBtn('ru')} onClick={() => changeLanguage('ru')}>RU</button>
+                <button style={styles.langBtn('en')} onClick={() => changeLanguage('en')}>EN</button>
+              </div>
             </div>
 
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               style={styles.mobileMenuBtn}
@@ -242,6 +279,7 @@ export default function Layout() {
             </button>
           </div>
 
+          {/* Mobile Navigation */}
           {isMenuOpen && (
             <div style={styles.mobileNav}>
               <div style={styles.mobileNavFlex}>
@@ -258,6 +296,13 @@ export default function Layout() {
                     {link.label}
                   </Link>
                 ))}
+
+                {/* Переключатель языков Mobile */}
+                <div style={{ ...styles.langSwitcher, marginTop: '8px', justifyContent: 'center' }}>
+                  <button style={styles.langBtn('az')} onClick={() => changeLanguage('az')}>AZ</button>
+                  <button style={styles.langBtn('ru')} onClick={() => changeLanguage('ru')}>RU</button>
+                  <button style={styles.langBtn('en')} onClick={() => changeLanguage('en')}>EN</button>
+                </div>
               </div>
             </div>
           )}
@@ -280,7 +325,7 @@ export default function Layout() {
             </div>
             
             <div className="footer-col">
-              <h3 style={styles.footerTitle}>Naviqasiya</h3>
+              <h3 style={styles.footerTitle}>{t('nav_about')}</h3>
               <div style={styles.footerLinksFlex}>
                 {navLinks.map((link) => (
                   <Link
@@ -295,7 +340,7 @@ export default function Layout() {
             </div>
 
             <div className="footer-col">
-              <h3 style={styles.footerTitle}>Əlaqə</h3>
+              <h3 style={styles.footerTitle}>{t('nav_contact')}</h3>
               <div style={styles.footerContactSpace}>
                 <p style={styles.footerContactP}>Email: absheronik@gmail.com</p>
                 <p style={styles.footerContactP}>Tel: +994 51 742 51 51</p>
