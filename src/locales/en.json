@@ -118,5 +118,8 @@
   "reg_btn_submitting": "Submitting...",
   "reg_loading_notice": "Information is sending, please wait 1 minute...",
   "reg_rate_limit": "Too many requests! Please wait 1 minute.",
-  "reg_success": "Registration successfully completed! Student data added to database."
+  "reg_success": "Registration successfully completed! Student data added to database.",
+
+  "footer_address": "Address: Khirdalan, near AAAF Park",
+  "footer_copyright": "© 2026 ABŞERONİK. All rights reserved."
 }

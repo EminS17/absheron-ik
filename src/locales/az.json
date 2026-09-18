@@ -118,5 +118,8 @@
   "reg_btn_submitting": "Göndərilir...",
   "reg_loading_notice": "Məlumatlar göndərilir, zəhmət olmasa 1 dəqiqə gözləyin...",
   "reg_rate_limit": "Çoxlu sorğu göndərdiniz! Zəhmət olmasa 1 dəqiqə gözləyin.",
-  "reg_success": "Qeydiyyat uğurla tamamlandı! Tələbənin məlumatları bazaya əlavə olundu."
+  "reg_success": "Qeydiyyat uğurla tamamlandı! Tələbənin məlumatları bazaya əlavə olundu.",
+
+  "footer_address": "Ünvan: Xırdalan, AAAF Park yaxınlığı",
+  "footer_copyright": "© 2026 ABŞERONİK. Bütün hüquqlar qorunur."
 }

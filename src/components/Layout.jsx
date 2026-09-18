@@ -345,13 +345,13 @@ export default function Layout() {
                 <p style={styles.footerContactP}>Email: absheronik@gmail.com</p>
                 <p style={styles.footerContactP}>Tel: +994 51 742 51 51</p>
                 <p style={styles.footerContactP}>Tel: +994 55 929 18 07</p>
-                <p style={{ ...styles.footerContactP, marginBottom: 0 }}>Ünvan: Xırdalan, AAAF Park yaxınlığı</p>
+                <p style={{ ...styles.footerContactP, marginBottom: 0 }}>{t('footer_address')}</p>
               </div>
             </div>
           </div>
 
           <div style={styles.copyright}>
-            © 2026 ABŞERONİK. Bütün hüquqlar qorunur.
+            {t('footer_copyright')}
           </div>
         </div>
       </footer>
