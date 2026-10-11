@@ -37,12 +37,6 @@ export default function Team() {
       height: '170 sm',
     },
     {
-      number: '8',
-      name: 'Aysun Səmədova',
-      position: t('pos_point_guard'),
-      height: '163 sm',
-    },
-    {
       number: '23',
       name: 'Ənəs Tahir',
       position: t('pos_defender'),
@@ -62,11 +56,11 @@ export default function Team() {
     },
   ];
 
-  // Здесь остались ТОЛЬКО Нихад, МирГусейн и Мелек
   const staff = [
     { name: 'Nihad Mahmudzade', position: t('pos_founder'), isOwner: true },
     { name: 'MirHuseyin Heydərli', position: t('pos_head_coach') },
     { name: 'Mələk Quliyeva', position: t('pos_assistant_coach') },
+    { name: 'Aysun Səmədova', position: t('pos_assistant_coach') },
   ];
 
   const [hoveredPlayer, setHoveredPlayer] = useState(null);
@@ -119,8 +113,8 @@ export default function Team() {
       backgroundColor: '#ffffff',
       borderRadius: '12px',
       overflow: 'hidden',
-      boxShadow: isHovered 
-        ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' 
+      boxShadow: isHovered
+        ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
         : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
       transition: 'all 0.3s ease'
@@ -179,8 +173,8 @@ export default function Team() {
       position: 'relative',
       overflow: 'hidden',
       border: isOwner ? '1px solid #3E6DB5' : '1px solid #e2e8f0',
-      boxShadow: isHovered 
-        ? '0 12px 24px -6px rgba(62, 109, 181, 0.18)' 
+      boxShadow: isHovered
+        ? '0 12px 24px -6px rgba(62, 109, 181, 0.18)'
         : '0 4px 12px rgba(0, 0, 0, 0.03)',
       transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
